@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_logo</item>
+        <item name="windowSplashScreenBackground">@color/green</item>
+        <item name="postSplashScreenTheme">@style/Theme.SplashScreen</item>
+<!--        <item name="windowSplashScreenIconBackgroundColor">#ffffff</item>-->
+    </style>
+    <style name="Theme.MyApp.Splash" parent="Theme.SplashScreen">
+        <item name="android:windowBackground">@drawable/carrot_logo</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/ic_logo</item>
+        <item name="windowSplashScreenAnimationDuration">300</item>
+        <item name="postSplashScreenTheme">@style/Theme.MyApp.Splash</item>
+    </style>
+    <style name="Theme._10__THUN_MENGSE_PVH_OOP_Practice003" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>

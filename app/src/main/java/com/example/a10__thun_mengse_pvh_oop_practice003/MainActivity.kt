@@ -5,31 +5,27 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Icon
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.a10__thun_mengse_pvh_oop_practice003.ui.theme._10__THUN_MENGSE_PVH_OOP_Practice003Theme
+import com.example.a10__thun_mengse_pvh_oop_practice003.ui.Activity.OnboardingActivity
 import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {
@@ -37,26 +33,12 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-//            _10__THUN_MENGSE_PVH_OOP_Practice003Theme {
-//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-//                    Greeting(
-//                        name = "Android",
-//                        modifier = Modifier.padding(innerPadding)
-//                    )
-//                }
-//                SplashCard()
-//
-//                LaunchedEffect(Unit) {
-//                    delay(2000)
-//                    startActivity(Intent(this@MainActivity, MainActivity::class.java))
-//                    finish()
-//                }
-
-//                AppContent()
-//            }
-//            AppContent()
-//            Text("Hello world")
-            Onboard()
+            SplashScreen()
+            LaunchedEffect(Unit) {
+                delay(2000)
+                startActivity(Intent(this@MainActivity, OnboardingActivity::class.java))
+                finish()
+            }
         }
     }
 }
@@ -69,61 +51,29 @@ fun Onboard(){
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showSystemUi = true)
 @Composable
-fun SplashCard() {
-    Box(modifier = Modifier.fillMaxSize().background(Color(0xFF53B175))
+private fun SplashScreen() {
+    Row (
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFF53B175)),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
     ){
-        Row (modifier =
-            Modifier.fillMaxSize(),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ){
-            Icon(
-                painter = painterResource(R.drawable.carrot_logo),
-                contentDescription = "splash card icon",
-                tint = Color(0xFFFFFFFF),
-                modifier = Modifier.size(60.dp)
-            )
-            Text("nectar",
-                color = Color(0xFFFFFFFF),
-                fontSize = 60.sp,
-                fontWeight = FontWeight.Bold,
-//                fontFamily = poppins,
-                modifier = Modifier.padding(start = 10.dp)
-            )
-        }
+        Image(
+            painter = painterResource(id = R.drawable.carrot_logo),
+            contentDescription = "App Logo",
+            modifier = Modifier.size(60.dp)
+        )
+
+        Spacer(
+            modifier = Modifier.width(10.dp)
+        )
+
+        Text(
+            text = "nectar",
+            color = Color.White,
+            fontSize = 50.sp)
     }
 }
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    _10__THUN_MENGSE_PVH_OOP_Practice003Theme {
-        Greeting("Android")
-    }
-}
-
-//@Composable
-//fun AppContent() {
-//    var showSplash by remember { mutableStateOf(false) }
-//
-//    LaunchedEffect(Unit) {
-//        delay(2000L) // Show splash for 2 seconds
-//        showSplash = true
-//    }
-//
-//    if (showSplash) {
-//        SplashScreen()
-//    } else {
-////        LearnConstraintLayout() // Your existing composable
-//    }
-//}

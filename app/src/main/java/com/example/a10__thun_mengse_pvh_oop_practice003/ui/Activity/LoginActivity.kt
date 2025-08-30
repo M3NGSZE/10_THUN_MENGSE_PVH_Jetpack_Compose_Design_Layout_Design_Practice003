@@ -1,11 +1,11 @@
 package com.example.a10__thun_mengse_pvh_oop_practice003.ui.Activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,16 +18,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Email
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -36,11 +31,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawWithContent
-import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -51,6 +43,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
+import com.example.a10__thun_mengse_pvh_oop_practice003.ui.component.NectarButton
 
 class LoginActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,18 +60,20 @@ private fun Login(){
     Column (
         modifier = Modifier
             .systemBarsPadding()
-            .padding(16.dp)
+            .padding(25.dp)
     ){
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight(0.2f),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.TopCenter
         ){
             Image(
                 painter = painterResource(id = R.drawable.orange_carrot),
                 contentDescription = "Orange Carrot",
-                modifier = Modifier.size(60.dp)
+                modifier = Modifier
+                    .size(80.dp)
+                    .padding(top = 20.dp)
             )
         }
 
@@ -199,6 +194,41 @@ private fun Login(){
                 modifier = Modifier
                     .clickable{
 
+                    }
+            )
+        }
+
+        Spacer(modifier = Modifier.height(30.dp))
+
+        val context = LocalContext.current
+        val text = "Log in"
+
+        Spacer(modifier = Modifier.height(10.dp))
+
+        NectarButton(context, HomeActivity(), text)
+
+        Spacer(modifier = Modifier.height(30.dp))
+
+        Row (
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ){
+            Text(
+                text = "Don't have an account? ",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Medium
+            )
+            Text(
+                text = " Signups",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Medium,
+                color = Color(0xFF53B175),
+                modifier = Modifier
+                    .clickable{
+                        print("hello world")
+                        val intent = Intent(context, SignUpActivity::class.java)
+                        context.startActivity(intent)
                     }
             )
         }

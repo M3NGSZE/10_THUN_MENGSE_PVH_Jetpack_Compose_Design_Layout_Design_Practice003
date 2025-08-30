@@ -23,6 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.Activity.OnboardingActivity" android:exported="false"/>
+        <activity android:name=".ui.Activity.LoginActivity" android:exported="false"/>
     </application>
 
 </manifest>

@@ -16,8 +16,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Email
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -34,6 +41,10 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
@@ -82,28 +93,28 @@ private fun Login(){
             color = Color(0xFF919090),
         )
 
-        Spacer(modifier = Modifier.height(15.dp))
+        Spacer(modifier = Modifier.height(35.dp))
 
-        var text by remember { mutableStateOf("") }
+        var email by remember { mutableStateOf("") }
 
         TextField(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(80.dp),
-            value = text,
-            onValueChange = { newText -> text = newText },
+            value = email,
+            onValueChange = { newText -> email = newText },
             label = {
                 Text(
                     text = "Email",
                     fontSize = 18.sp,
-                    color = Color.Black,
+                    color = Color(0xFF919090),
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
             },
             colors = TextFieldDefaults.colors(
                 unfocusedContainerColor = Color.Transparent,
                 focusedContainerColor = Color.Transparent,
-//                focusedIndicatorColor = Color(0xFF919090),
+                focusedIndicatorColor = Color(0xFF53B175),
                 unfocusedIndicatorColor = Color(0x73919090)
             ),
             singleLine = true,
@@ -112,7 +123,63 @@ private fun Login(){
             )
         )
 
+        Spacer(modifier = Modifier.height(35.dp))
+
+        var password by remember { mutableStateOf("") }
+        var passwordVisibility by remember { mutableStateOf(false) }
+
+        val icon = if (passwordVisibility)
+            painterResource(id = R.drawable.visible_icon)
+        else
+            painterResource(id = R.drawable.invisible_icon)
 
 
+        TextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(80.dp),
+            value = password,
+            onValueChange = { password = it },
+            label = {
+                Text(
+                    text = "Password",
+                    fontSize = 18.sp,
+                    color = Color(0xFF919090),
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+            },
+            colors = TextFieldDefaults.colors(
+                unfocusedContainerColor = Color.Transparent,
+                focusedContainerColor = Color.Transparent,
+                focusedIndicatorColor = Color(0xFF53B175),
+                unfocusedIndicatorColor = Color(0x73919090)
+            ),
+            singleLine = true,
+            textStyle = TextStyle(
+                fontSize = 18.sp
+            ),
+            trailingIcon = {
+                IconButton(
+                    onClick = {
+                        passwordVisibility = !passwordVisibility
+                    }
+                ) {
+                    Icon(
+                        painter = icon,
+                        contentDescription = "Visible Icon",
+                        modifier = Modifier.size(20.dp),
+                    )
+                }
+            },
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password, // Keyboard type
+                imeAction = ImeAction.Done            // Action button on keyboard
+            ),
+            visualTransformation = if (passwordVisibility)
+                VisualTransformation.None
+            else
+                PasswordVisualTransformation(),
+        )
     }
 }
+

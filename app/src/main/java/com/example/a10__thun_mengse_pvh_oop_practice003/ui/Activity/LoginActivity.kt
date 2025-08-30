@@ -48,6 +48,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
 import com.example.a10__thun_mengse_pvh_oop_practice003.ui.component.NectarButton
+import com.example.a10__thun_mengse_pvh_oop_practice003.ui.component.NectarTextField
 
 class LoginActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -100,32 +101,34 @@ private fun Login(){
 
         var email by remember { mutableStateOf("") }
 
-        TextField(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(80.dp),
-            value = email,
-            onValueChange = { newText -> email = newText },
-            label = {
-                Text(
-                    text = "Email",
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Medium,
-                    color = Color(0xFF919090),
-                    modifier = Modifier.padding(bottom = 8.dp)
-                )
-            },
-            colors = TextFieldDefaults.colors(
-                unfocusedContainerColor = Color.Transparent,
-                focusedContainerColor = Color.Transparent,
-                focusedIndicatorColor = Color(0xFF53B175),
-                unfocusedIndicatorColor = Color(0x73919090)
-            ),
-            singleLine = true,
-            textStyle = TextStyle(
-                fontSize = 18.sp
-            )
-        )
+        NectarTextField("Email") { e -> email = e}
+
+//        TextField(
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .height(80.dp),
+//            value = email,
+//            onValueChange = { newText -> email = newText },
+//            label = {
+//                Text(
+//                    text = "Email",
+//                    fontSize = 20.sp,
+//                    fontWeight = FontWeight.Medium,
+//                    color = Color(0xFF919090),
+//                    modifier = Modifier.padding(bottom = 8.dp)
+//                )
+//            },
+//            colors = TextFieldDefaults.colors(
+//                unfocusedContainerColor = Color.Transparent,
+//                focusedContainerColor = Color.Transparent,
+//                focusedIndicatorColor = Color(0xFF53B175),
+//                unfocusedIndicatorColor = Color(0x73919090)
+//            ),
+//            singleLine = true,
+//            textStyle = TextStyle(
+//                fontSize = 18.sp
+//            )
+//        )
 
         Spacer(modifier = Modifier.height(35.dp))
 
@@ -189,11 +192,11 @@ private fun Login(){
         var validationState by remember { mutableStateOf(true) }
 
         val context = LocalContext.current
-        val text = "Log ind"
+        val text = "Log in"
 
         val validation : (String, String, Context) -> Unit = {
                 email, password , context->
-            if (email == "chanell@gmail.com" && password == "Chanelle123@"){
+            if (email == "chanelle@gmail.com" && password == "Chanelle123@"){
                 val intent = Intent(context, HomeActivity::class.java)
                 context.startActivity(intent)
                 validationState = true
@@ -212,8 +215,6 @@ private fun Login(){
                 color = Color.Red
             )
         }
-
-
 
         Row (
             modifier = Modifier
@@ -271,13 +272,12 @@ private fun Login(){
                 fontWeight = FontWeight.Medium
             )
             Text(
-                text = " Signups",
+                text = " Signup",
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Medium,
                 color = Color(0xFF53B175),
                 modifier = Modifier
                     .clickable{
-                        print("hello world")
                         val intent = Intent(context, SignUpActivity::class.java)
                         context.startActivity(intent)
                     }

@@ -6,8 +6,11 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -90,6 +93,7 @@ private fun Login(){
         Text(
             text = "Enter your emails and password",
             fontSize = 17.sp,
+            fontWeight = FontWeight.W500,
             color = Color(0xFF919090),
         )
 
@@ -106,7 +110,8 @@ private fun Login(){
             label = {
                 Text(
                     text = "Email",
-                    fontSize = 18.sp,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Medium,
                     color = Color(0xFF919090),
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
@@ -144,6 +149,7 @@ private fun Login(){
                 Text(
                     text = "Password",
                     fontSize = 18.sp,
+                    fontWeight = FontWeight.Medium,
                     color = Color(0xFF919090),
                     modifier = Modifier.padding(bottom = 8.dp)
                 )
@@ -180,6 +186,22 @@ private fun Login(){
             else
                 PasswordVisualTransformation(),
         )
+
+        Row (
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 20.dp),
+            horizontalArrangement = Arrangement.End
+        ){
+            Text(
+                text = "Forgot Password?",
+                fontSize = 16.sp,
+                modifier = Modifier
+                    .clickable{
+
+                    }
+            )
+        }
     }
 }
 

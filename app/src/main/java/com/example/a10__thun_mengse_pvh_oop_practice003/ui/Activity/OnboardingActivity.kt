@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.a10__thun_mengse_pvh_oop_practice003.MainActivity
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
+import com.example.a10__thun_mengse_pvh_oop_practice003.ui.component.NectarButton
 
 class OnboardingActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -102,24 +103,8 @@ private fun Onboarding(){
 
             val context = LocalContext.current
 
-            Button(
-                onClick = {
-                    val intent = Intent(context, LoginActivity::class.java)
-                    context.startActivity(intent)
-                },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color(0xFF53B175)
-                ),
-                shape = RoundedCornerShape(20.dp),
-                modifier = Modifier
-                    .width(370.dp)
-                    .height(70.dp)
-            ) {
-                Text(
-                    text = "Get Started",
-                    fontSize = 20.sp
-                )
-            }
+            NectarButton(context, LoginActivity())
+
         }
 
     }

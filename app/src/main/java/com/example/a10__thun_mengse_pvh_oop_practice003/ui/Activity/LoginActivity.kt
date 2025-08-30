@@ -1,5 +1,6 @@
 package com.example.a10__thun_mengse_pvh_oop_practice003.ui.Activity
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -18,7 +19,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -182,6 +186,35 @@ private fun Login(){
                 PasswordVisualTransformation(),
         )
 
+        var validationState by remember { mutableStateOf(true) }
+
+        val context = LocalContext.current
+        val text = "Log ind"
+
+        val validation : (String, String, Context) -> Unit = {
+                email, password , context->
+            if (email == "chanell@gmail.com" && password == "Chanelle123@"){
+                val intent = Intent(context, HomeActivity::class.java)
+                context.startActivity(intent)
+                validationState = true
+            } else {
+                validationState = false
+            }
+        }
+
+        if (!validationState){
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            Text(
+                text = "Invalid Email or Password",
+                fontSize = 17.sp,
+                color = Color.Red
+            )
+        }
+
+
+
         Row (
             modifier = Modifier
                 .fillMaxWidth()
@@ -200,12 +233,30 @@ private fun Login(){
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        val context = LocalContext.current
-        val text = "Log in"
 
-        Spacer(modifier = Modifier.height(10.dp))
 
-        NectarButton(context, HomeActivity(), text)
+//        Spacer(modifier = Modifier.height(10.dp))
+
+//        NectarButton(context, HomeActivity(), text)
+        Button(
+            onClick = {
+//                validationState = validation(email, password)
+                validation(email, password, context)
+            },
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color(0xFF53B175)
+            ),
+            shape = RoundedCornerShape(20.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(80.dp)
+        ) {
+            Text(
+                text = text,
+                fontSize = 23.sp,
+                fontWeight = FontWeight.ExtraBold
+            )
+        }
 
         Spacer(modifier = Modifier.height(30.dp))
 
@@ -234,4 +285,5 @@ private fun Login(){
         }
     }
 }
+
 

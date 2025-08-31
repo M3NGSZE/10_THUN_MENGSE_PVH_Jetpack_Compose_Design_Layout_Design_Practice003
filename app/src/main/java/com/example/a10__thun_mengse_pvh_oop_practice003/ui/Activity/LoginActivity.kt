@@ -69,7 +69,7 @@ private fun Login(){
 
         var password by remember { mutableStateOf("") }
 
-        NectarPassField("Password1") { p -> password = p}
+        NectarPassField("Password") { p -> password = p}
 
         var validationState by remember { mutableStateOf(true) }
 

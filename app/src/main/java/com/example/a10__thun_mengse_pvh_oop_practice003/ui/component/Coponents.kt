@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -36,12 +35,9 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
-import org.w3c.dom.Text
 
 @Composable
 fun NectarButton(context: Context, screen: ComponentActivity, text: String){
@@ -66,7 +62,7 @@ fun NectarButton(context: Context, screen: ComponentActivity, text: String){
     }
 }
 
-
+// email text field
 @Composable
 fun NectarTextField(label: String, setEmail: (String) -> Unit){
 
@@ -97,10 +93,15 @@ fun NectarTextField(label: String, setEmail: (String) -> Unit){
         singleLine = true,
         textStyle = TextStyle(
             fontSize = 18.sp
-        )
+        ),
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Email, // Keyboard type
+            imeAction = ImeAction.Done            // Action button on keyboard
+        ),
     )
 }
 
+// password text field
 @Composable
 fun NectarPassField(label: String, setPassword: (String) -> Unit){
 

@@ -42,11 +42,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
 import com.example.a10__thun_mengse_pvh_oop_practice003.data.BottomNavigation
+import com.example.a10__thun_mengse_pvh_oop_practice003.ui.component.SearchField
 
 class HomeActivity : ComponentActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +70,7 @@ fun Home(){
         LazyColumn (
             modifier = Modifier
                 .padding(paddingValues)
+                .padding(25.dp)
         ) {
             item {
                 NectarTopBar()
@@ -106,13 +109,15 @@ fun NectarTopBar(){
 
             Text(
                 text = "Dhaka, Banassre",
-                fontSize = 20.sp
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Medium,
+//                color = Color(0xFF919090),
             )
         }
 
         Spacer(modifier = Modifier.height(15.dp))
 
-
+        SearchField()
     }
 }
 

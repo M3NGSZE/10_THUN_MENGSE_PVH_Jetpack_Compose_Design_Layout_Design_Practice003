@@ -16,6 +16,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -30,6 +32,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -38,6 +41,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
@@ -239,4 +243,52 @@ fun Signup(description1: String, description2: String, context: Context, activit
                 }
         )
     }
+}
+
+@Preview
+@Composable
+fun SearchField(){
+
+    var search by remember { mutableStateOf("") }
+
+    TextField(
+        value = search,
+        onValueChange = {
+            it -> search = it
+                        },
+        placeholder = {
+            Text(
+                text = "Search Store",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Medium
+            )
+        },
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(65.dp)
+            .clip(RoundedCornerShape(20.dp)),
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Rounded.Search,
+                contentDescription = "Search Icon",
+                modifier = Modifier
+                    .padding(start = 15.dp)
+                    .size(30.dp)
+            )
+        },
+        singleLine = true,
+        textStyle = TextStyle(
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Medium
+        ),
+        colors = TextFieldDefaults.colors(
+            focusedIndicatorColor = Color.Transparent,   // remove line when focused
+            unfocusedIndicatorColor = Color.Transparent, // remove line when not focused
+            disabledIndicatorColor = Color.Transparent // remove line when disabled
+        ),
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Text,
+            imeAction = ImeAction.Done
+        ),
+    )
 }

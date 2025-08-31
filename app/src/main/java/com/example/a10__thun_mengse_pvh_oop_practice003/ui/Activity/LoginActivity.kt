@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.a10__thun_mengse_pvh_oop_practice003.ui.component.NectarPassField
 import com.example.a10__thun_mengse_pvh_oop_practice003.ui.component.NectarTextField
+import com.example.a10__thun_mengse_pvh_oop_practice003.ui.component.Signup
 import com.example.a10__thun_mengse_pvh_oop_practice003.ui.component.TopSection
 
 class LoginActivity : ComponentActivity(){
@@ -53,9 +54,9 @@ private fun Login(){
     ){
 
         val title = "Loging"
-        val description = "Enter your emails and password"
+        val description1 = "Enter your emails and password"
 
-        TopSection(title, description)
+        TopSection(title, description1)
 
         Spacer(modifier = Modifier.height(35.dp))
 
@@ -63,7 +64,9 @@ private fun Login(){
 
         var email by remember { mutableStateOf("") }
 
-        NectarTextField("Email") { e -> email = e}
+        NectarTextField(
+            label = "Email1",
+        ) { e -> email = e}
 
         Spacer(modifier = Modifier.height(35.dp))
 
@@ -86,7 +89,10 @@ private fun Login(){
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        Signup(context)
+        val description2 = "Don't have an account?"
+        val description3 = "SignUp"
+
+        Signup(description2, description3, context, SignUpActivity())
     }
 }
 
@@ -167,30 +173,3 @@ private val validation : (String, String, Context, (Boolean) -> Unit) -> Unit = 
     }
 }
 
-
-// signup section
-@Composable
-private fun Signup(context: Context){
-    Row (
-        modifier = Modifier
-            .fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center
-    ){
-        Text(
-            text = "Don't have an account? ",
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Medium
-        )
-        Text(
-            text = " Signup",
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Medium,
-            color = Color(0xFF53B175),
-            modifier = Modifier
-                .clickable{
-                    val intent = Intent(context, SignUpActivity::class.java)
-                    context.startActivity(intent)
-                }
-        )
-    }
-}

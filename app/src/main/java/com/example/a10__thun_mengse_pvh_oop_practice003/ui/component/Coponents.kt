@@ -4,7 +4,10 @@ import android.content.Context
 import android.content.Intent
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -38,6 +41,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
+import com.example.a10__thun_mengse_pvh_oop_practice003.ui.Activity.SignUpActivity
 
 @Composable
 fun NectarButton(context: Context, screen: ComponentActivity, text: String){
@@ -62,23 +66,22 @@ fun NectarButton(context: Context, screen: ComponentActivity, text: String){
     }
 }
 
-// email text field
 @Composable
-fun NectarTextField(label: String, setEmail: (String) -> Unit){
+fun NectarTextField(label: String, isIcon: Boolean = false, getValue: (String) -> Unit){
 
-    var email by remember { mutableStateOf("") }
-    setEmail(email)
+    var x by remember { mutableStateOf("") }
+    getValue(x)
 
     TextField(
         modifier = Modifier
             .fillMaxWidth()
             .height(80.dp),
-        value = email,
-        onValueChange = { newText -> email = newText },
+        value = x,
+        onValueChange = { x = it },
         label = {
             Text(
                 text = label,
-                fontSize = 20.sp,
+                fontSize = 18.sp,
                 fontWeight = FontWeight.Medium,
                 color = Color(0xFF919090),
                 modifier = Modifier.padding(bottom = 8.dp)
@@ -94,11 +97,21 @@ fun NectarTextField(label: String, setEmail: (String) -> Unit){
         textStyle = TextStyle(
             fontSize = 18.sp
         ),
+        trailingIcon = {
+            if (isIcon) {
+                Icon(
+                    painter = painterResource(id = R.drawable.tick_icon),
+                    contentDescription = "Visible Icon",
+                    modifier = Modifier.size(20.dp),
+                    tint = Color(0xFF53B175)
+                )
+            }
+        },
         keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Email, // Keyboard type
-            imeAction = ImeAction.Done            // Action button on keyboard
-        ),
-    )
+                keyboardType = KeyboardType.Email,
+                imeAction = ImeAction.Done
+            )
+        )
 }
 
 // password text field
@@ -201,4 +214,30 @@ fun TopSection(title: String, description: String){
         fontWeight = FontWeight.W500,
         color = Color(0xFF919090),
     )
+}
+
+@Composable
+fun Signup(description1: String, description2: String, context: Context, activity: ComponentActivity){
+    Row (
+        modifier = Modifier
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ){
+        Text(
+            text = description1,
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Medium
+        )
+        Text(
+            text = " $description2",
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Medium,
+            color = Color(0xFF53B175),
+            modifier = Modifier
+                .clickable{
+                    val intent = Intent(context, activity::class.java)
+                    context.startActivity(intent)
+                }
+        )
+    }
 }

@@ -7,9 +7,11 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -41,6 +43,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -60,6 +63,7 @@ class HomeActivity : ComponentActivity(){
     }
 }
 
+//@Preview(showSystemUi = true)
 @Composable
 fun Home(){
     Scaffold (
@@ -74,6 +78,28 @@ fun Home(){
         ) {
             item {
                 NectarTopBar()
+
+                Spacer(modifier = Modifier.height(15.dp))
+
+                SearchField()
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()      // make Box fill the screen width
+                        .height(130.dp)
+                        .clip(RoundedCornerShape(15.dp))
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.banner),
+                        contentDescription = "Banner img",
+                        modifier = Modifier
+                            .fillMaxWidth()   // make Image fill the Box width
+                            .fillMaxHeight(), // optional: match Box height
+                        contentScale = ContentScale.Crop // scales image to fill width nicely
+                    )
+                }
             }
         }
     }
@@ -115,9 +141,7 @@ fun NectarTopBar(){
             )
         }
 
-        Spacer(modifier = Modifier.height(15.dp))
 
-        SearchField()
     }
 }
 

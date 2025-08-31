@@ -41,7 +41,6 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
-import com.example.a10__thun_mengse_pvh_oop_practice003.ui.Activity.SignUpActivity
 
 @Composable
 fun NectarButton(context: Context, screen: ComponentActivity, text: String){

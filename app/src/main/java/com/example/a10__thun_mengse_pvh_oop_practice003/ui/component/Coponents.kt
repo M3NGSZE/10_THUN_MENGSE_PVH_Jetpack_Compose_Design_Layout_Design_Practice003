@@ -292,3 +292,31 @@ fun SearchField(){
         ),
     )
 }
+
+@Composable
+fun RowSection(sectionName: String, seeAll: String){
+
+    Spacer(modifier = Modifier.height(20.dp))
+
+    Row (
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.Bottom
+    ){
+        Text(
+            text = sectionName,
+            fontSize = 29.sp,
+            fontWeight = FontWeight.Medium
+        )
+        Text(
+            text = seeAll,
+            fontSize = 19.sp,
+            color = Color(0xFF53B175),
+            fontWeight = FontWeight.Medium,
+            modifier = Modifier
+                .clickable{ /* will implement later*/ }
+        )
+    }
+
+    Spacer(modifier = Modifier.height(20.dp))
+}

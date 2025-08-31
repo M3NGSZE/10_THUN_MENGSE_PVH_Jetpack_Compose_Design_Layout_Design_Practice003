@@ -6,6 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,15 +21,16 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material.icons.rounded.FavoriteBorder
 import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material.icons.rounded.PersonOutline
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material.icons.rounded.ShoppingCart
 import androidx.compose.material.icons.rounded.StoreMallDirectory
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -36,8 +39,6 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,11 +47,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
 import com.example.a10__thun_mengse_pvh_oop_practice003.data.BottomNavigation
+import com.example.a10__thun_mengse_pvh_oop_practice003.data.ExclusiveOffer
+import com.example.a10__thun_mengse_pvh_oop_practice003.data.Groceries
+import com.example.a10__thun_mengse_pvh_oop_practice003.ui.component.RowSection
 import com.example.a10__thun_mengse_pvh_oop_practice003.ui.component.SearchField
 
 class HomeActivity : ComponentActivity(){
@@ -62,6 +65,8 @@ class HomeActivity : ComponentActivity(){
         }
     }
 }
+
+
 
 //@Preview(showSystemUi = true)
 @Composable
@@ -100,10 +105,247 @@ fun Home(){
                         contentScale = ContentScale.Crop // scales image to fill width nicely
                     )
                 }
+
+                RowSection(sectionName = "Exclusive Offers", seeAll = "See All")
+
+                ProductSection()
+
+                RowSection(sectionName = "Best Selling", seeAll = "See All")
+
+                ProductSection()
+
+                RowSection(sectionName = "Groceries", seeAll = "See All")
+
+                GroceriesSection()
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                ProductSection()
             }
         }
     }
 }
+
+@Composable
+fun GroceriesSection(){
+    LazyRow {
+        items(groceryItems.size) {it ->
+            GroceryRender(it)
+        }
+    }
+}
+
+@Composable
+fun GroceryRender(index: Int){
+    val groceries = groceryItems[index]
+    var firstPaddingStart = 16.dp
+    var lastPaddingEnd = 0.dp
+
+    if (index == exclusiveOfferItem.size - 1){
+        lastPaddingEnd = 16.dp
+    }
+
+    if (index == 0){
+        firstPaddingStart = 0.dp
+    }
+
+    val bgColor = if (index == 0) 0xFFFCF0E3 else 0xFFE4F2E9
+
+    Box(
+        modifier = Modifier
+            .padding(
+                start = firstPaddingStart,
+                end = lastPaddingEnd
+            )
+    ){
+        Row (
+            modifier = Modifier
+                .clip(RoundedCornerShape(20.dp))
+                .background(Color(bgColor))
+                .width(300.dp)
+                .height(140.dp)
+                .padding(10.dp)
+                .clickable{},
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Box(
+//                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ){
+                Image(
+                    painter = painterResource(groceries.img),
+                    contentDescription = groceries.name,
+                    modifier = Modifier
+                        .padding(start = 8.dp)
+                        .size(110.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.width(15.dp))
+
+            Text(
+                text = groceries.name,
+                fontSize = 25.sp,
+                fontWeight = FontWeight.Medium
+            )
+        }
+    }
+}
+
+val groceryItems = listOf(
+    Groceries(
+        name = "Pulses",
+        img = R.drawable.pulses
+    ),
+    Groceries(
+        name = "Rice",
+        img = R.drawable.rice
+    )
+)
+
+@Composable
+fun  ProductSection( ){
+    LazyRow {
+        items(exclusiveOfferItem.size) {it ->
+            ItemRender(it)
+        }
+    }
+}
+
+@Composable
+fun ItemRender(index: Int){
+    val exclusive = exclusiveOfferItem[index]
+    var firstPaddingStart = 16.dp
+    var lastPaddingEnd = 0.dp
+
+    if (index == exclusiveOfferItem.size - 1){
+        lastPaddingEnd = 16.dp
+    }
+
+    if (index == 0){
+        firstPaddingStart = 0.dp
+    }
+
+    Box(
+        modifier = Modifier
+            .padding(
+                start = firstPaddingStart,
+                end = lastPaddingEnd
+            )
+    ){
+        Column (
+            modifier = Modifier
+                .border(
+                    width = 1.dp,               // thickness of the border
+                    color = Color.Gray,          // border color
+                    shape = RoundedCornerShape(13.dp) // optional: rounded corners
+                )
+                .width(200.dp)
+                .padding(10.dp)
+                .clickable{}
+        ){
+            Box(
+                modifier = Modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ){
+                Image(
+                    painter = painterResource(exclusive.img),
+                    contentDescription = exclusive.name,
+                    modifier = Modifier.size(130.dp)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Text(
+                text = exclusive.name,
+                fontWeight = FontWeight.Medium,
+                fontSize = 18.sp
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Text(
+                text = exclusive.des,
+                fontWeight = FontWeight.Medium,
+                color = Color.Gray
+            )
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Row (
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ){
+                Text(
+                    text = "$ ${exclusive.price}",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Medium
+                )
+
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(20.dp))
+                        .background(Color(0xFF53B175))
+                        .size(50.dp)
+                        .clickable{},
+                    contentAlignment = Alignment.Center
+                ){
+                    Icon(
+                        imageVector = Icons.Rounded.Add,
+                        contentDescription = "Add icon",
+                        tint = Color.White
+                    )
+                }
+            }
+
+
+        }
+    }
+}
+
+
+
+// initialize value for render data
+val exclusiveOfferItem = listOf(
+    ExclusiveOffer(
+        name = "Organic Bananas",
+        des = "7pcs, Priceg",
+        price = 4.99,
+        img = R.drawable.banana
+    ),
+    ExclusiveOffer(
+        name = "Red Apple",
+        des = "1kg, Priceg",
+        price = 4.99,
+        img = R.drawable.apple
+    ),
+    ExclusiveOffer(
+        name = "Bell Pepper Red",
+        des = "1kg, Priceg",
+        price = 4.99,
+        img = R.drawable.bell_pepper
+    ),
+    ExclusiveOffer(
+        name = "Ginger",
+        des = "250gm, Priceg",
+        price = 4.99,
+        img = R.drawable.ginger
+    ),
+    ExclusiveOffer(
+        name = "Beef Bone",
+        des = "1kg, Priceg",
+        price = 4.99,
+        img = R.drawable.beef_bone
+    ),
+    ExclusiveOffer(
+        name = "Broiler Chicken",
+        des = "1kg, Priceg",
+        price = 4.99,
+        img = R.drawable.boiler_chicken
+    )
+)
 
 //@Preview
 @Composable

@@ -169,12 +169,12 @@ private fun TermPolicy(){
     ){
         Text(
             text = "By continuing you agree to our ",
-            fontSize = 18.sp,
+            fontSize = 16.sp,
             color = Color(0xFF919090),
         )
         Text(
             text = " Terms of Service",
-            fontSize = 18.sp,
+            fontSize = 16.sp,
             color = Color(0xFF53B175),
             modifier = Modifier
                 .clickable{
@@ -190,12 +190,12 @@ private fun TermPolicy(){
     ){
         Text(
             text = "and ",
-            fontSize = 18.sp,
+            fontSize = 16.sp,
             color = Color(0xFF919090),
         )
         Text(
             text = " Privacy Policy",
-            fontSize = 18.sp,
+            fontSize = 16.sp,
             color = Color(0xFF53B175),
             modifier = Modifier
                 .clickable{

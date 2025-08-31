@@ -134,7 +134,11 @@ private fun ForgotPassword(){
 
 //login section
 @Composable
-private fun LoginButton(email: String, password: String, context: Context, setValidationState:(Boolean)-> Unit){
+private fun LoginButton(
+    email: String,
+    password: String,
+    context: Context,
+    setValidationState:(Boolean)-> Unit){
 
     var validationState by remember { mutableStateOf(true) }
     setValidationState(validationState)

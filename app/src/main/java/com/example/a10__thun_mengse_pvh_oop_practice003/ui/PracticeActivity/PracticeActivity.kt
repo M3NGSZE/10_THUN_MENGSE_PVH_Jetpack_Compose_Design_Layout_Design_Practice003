@@ -22,6 +22,7 @@ import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -115,10 +116,12 @@ fun PracticeCheckBox(){
         Checkbox(
             checked = checkVal,
             onCheckedChange = {checkVal = it},
-
-
+            colors = CheckboxDefaults.colors(
+                checkedColor = Color(0xFFF96266),      // when checked
+                uncheckedColor = Color.Gray,     // when unchecked
+                checkmarkColor = Color.White     // color of the checkmark inside
+            )
         )
-
         Text(
             text = "I agree to the terms and conditions",
             fontWeight = FontWeight.Medium,

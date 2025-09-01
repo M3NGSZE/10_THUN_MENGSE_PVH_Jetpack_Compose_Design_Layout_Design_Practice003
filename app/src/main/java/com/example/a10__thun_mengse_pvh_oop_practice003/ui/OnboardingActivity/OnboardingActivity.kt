@@ -1,6 +1,5 @@
-package com.example.a10__thun_mengse_pvh_oop_practice003.ui.Activity
+package com.example.a10__thun_mengse_pvh_oop_practice003.ui.OnboardingActivity
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -30,6 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
+import com.example.a10__thun_mengse_pvh_oop_practice003.ui.LoginActivity.LoginActivity
 import com.example.a10__thun_mengse_pvh_oop_practice003.ui.component.NectarButton
 
 class OnboardingActivity : ComponentActivity() {

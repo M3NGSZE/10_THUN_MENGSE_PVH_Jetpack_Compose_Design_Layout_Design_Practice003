@@ -23,7 +23,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.a10__thun_mengse_pvh_oop_practice003.ui.Activity.OnboardingActivity
+import com.example.a10__thun_mengse_pvh_oop_practice003.ui.OnboardingActivity.OnboardingActivity
 import kotlinx.coroutines.delay
 
 class MainActivity : ComponentActivity() {

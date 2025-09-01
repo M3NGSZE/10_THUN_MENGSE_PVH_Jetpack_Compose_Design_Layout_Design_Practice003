@@ -1,4 +1,4 @@
-package com.example.a10__thun_mengse_pvh_oop_practice003.ui.Activity
+package com.example.a10__thun_mengse_pvh_oop_practice003.ui.SignupActivity
 
 import android.content.Context
 import android.content.Intent
@@ -29,6 +29,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.a10__thun_mengse_pvh_oop_practice003.ui.LoginActivity.LoginActivity
 import com.example.a10__thun_mengse_pvh_oop_practice003.ui.component.NectarPassField
 import com.example.a10__thun_mengse_pvh_oop_practice003.ui.component.NectarTextField
 import com.example.a10__thun_mengse_pvh_oop_practice003.ui.component.Signup

@@ -1,4 +1,4 @@
-package com.example.a10__thun_mengse_pvh_oop_practice003.ui.Activity
+package com.example.a10__thun_mengse_pvh_oop_practice003.ui.HomeActivity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
@@ -56,7 +57,7 @@ import com.example.a10__thun_mengse_pvh_oop_practice003.data.Groceries
 import com.example.a10__thun_mengse_pvh_oop_practice003.ui.component.RowSection
 import com.example.a10__thun_mengse_pvh_oop_practice003.ui.component.SearchField
 
-class HomeActivity : ComponentActivity(){
+class HomeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -66,17 +67,15 @@ class HomeActivity : ComponentActivity(){
     }
 }
 
-
-
 //@Preview(showSystemUi = true)
 @Composable
-fun Home(){
-    Scaffold (
+fun Home() {
+    Scaffold(
         bottomBar = {
             NectarBottomBar()
         }
     ) { paddingValues ->
-        LazyColumn (
+        LazyColumn(
             modifier = Modifier
                 .padding(paddingValues)
                 .padding(25.dp)
@@ -126,103 +125,37 @@ fun Home(){
     }
 }
 
+
 @Composable
-fun GroceriesSection(){
+fun ProductSection() {
     LazyRow {
-        items(groceryItems.size) {it ->
-            GroceryRender(it)
-        }
-    }
-}
-
-@Composable
-fun GroceryRender(index: Int){
-    val groceries = groceryItems[index]
-    var firstPaddingStart = 16.dp
-    var lastPaddingEnd = 0.dp
-
-    if (index == exclusiveOfferItem.size - 1){
-        lastPaddingEnd = 16.dp
-    }
-
-    if (index == 0){
-        firstPaddingStart = 0.dp
-    }
-
-    val bgColor = if (index == 0) 0xFFFCF0E3 else 0xFFE4F2E9
-
-    Box(
-        modifier = Modifier
-            .padding(
-                start = firstPaddingStart,
-                end = lastPaddingEnd
-            )
-    ){
-        Row (
-            modifier = Modifier
-                .clip(RoundedCornerShape(20.dp))
-                .background(Color(bgColor))
-                .width(300.dp)
-                .height(140.dp)
-                .padding(10.dp)
-                .clickable{},
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Box(
-//                modifier = Modifier.fillMaxWidth(),
-                contentAlignment = Alignment.Center
-            ){
-                Image(
-                    painter = painterResource(groceries.img),
-                    contentDescription = groceries.name,
-                    modifier = Modifier
-                        .padding(start = 8.dp)
-                        .size(110.dp)
-                )
-            }
-
-            Spacer(modifier = Modifier.width(15.dp))
-
-            Text(
-                text = groceries.name,
-                fontSize = 25.sp,
-                fontWeight = FontWeight.Medium
-            )
-        }
-    }
-}
-
-val groceryItems = listOf(
-    Groceries(
-        name = "Pulses",
-        img = R.drawable.pulses
-    ),
-    Groceries(
-        name = "Rice",
-        img = R.drawable.rice
-    )
-)
-
-@Composable
-fun  ProductSection( ){
-    LazyRow {
-        items(exclusiveOfferItem.size) {it ->
+        items(exclusiveOfferItem.size){it ->
             ItemRender(it)
+
         }
+//        items(exclusiveOfferItem, key = { item ->
+//            item.id
+//
+//        }) { it ->
+//            ItemRender(it)
+//        }
+//        items(1000){
+//
+//        }
     }
 }
 
 @Composable
-fun ItemRender(index: Int){
+fun ItemRender(index: Int) {
     val exclusive = exclusiveOfferItem[index]
     var firstPaddingStart = 16.dp
     var lastPaddingEnd = 0.dp
 
-    if (index == exclusiveOfferItem.size - 1){
+    if (index == exclusiveOfferItem.size - 1) {
         lastPaddingEnd = 16.dp
     }
 
-    if (index == 0){
+    if (index == 0) {
         firstPaddingStart = 0.dp
     }
 
@@ -232,22 +165,22 @@ fun ItemRender(index: Int){
                 start = firstPaddingStart,
                 end = lastPaddingEnd
             )
-    ){
-        Column (
+    ) {
+        Column(
             modifier = Modifier
                 .border(
                     width = 1.dp,               // thickness of the border
                     color = Color.Gray,          // border color
                     shape = RoundedCornerShape(13.dp) // optional: rounded corners
                 )
-                .width(200.dp)
+                .width(190.dp)
                 .padding(10.dp)
-                .clickable{}
-        ){
+                .clickable {}
+        ) {
             Box(
                 modifier = Modifier.fillMaxWidth(),
                 contentAlignment = Alignment.Center
-            ){
+            ) {
                 Image(
                     painter = painterResource(exclusive.img),
                     contentDescription = exclusive.name,
@@ -273,11 +206,11 @@ fun ItemRender(index: Int){
 
             Spacer(modifier = Modifier.height(10.dp))
 
-            Row (
+            Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
-            ){
+            ) {
                 Text(
                     text = "$ ${exclusive.price}",
                     fontSize = 18.sp,
@@ -289,9 +222,9 @@ fun ItemRender(index: Int){
                         .clip(RoundedCornerShape(20.dp))
                         .background(Color(0xFF53B175))
                         .size(50.dp)
-                        .clickable{},
+                        .clickable {},
                     contentAlignment = Alignment.Center
-                ){
+                ) {
                     Icon(
                         imageVector = Icons.Rounded.Add,
                         contentDescription = "Add icon",
@@ -306,40 +239,45 @@ fun ItemRender(index: Int){
 }
 
 
-
 // initialize value for render data
 val exclusiveOfferItem = listOf(
     ExclusiveOffer(
+        id = 1,
         name = "Organic Bananas",
         des = "7pcs, Priceg",
         price = 4.99,
         img = R.drawable.banana
     ),
     ExclusiveOffer(
+        id = 2,
         name = "Red Apple",
         des = "1kg, Priceg",
         price = 4.99,
         img = R.drawable.apple
     ),
     ExclusiveOffer(
+        id = 3,
         name = "Bell Pepper Red",
         des = "1kg, Priceg",
         price = 4.99,
         img = R.drawable.bell_pepper
     ),
     ExclusiveOffer(
+        id = 4,
         name = "Ginger",
         des = "250gm, Priceg",
         price = 4.99,
         img = R.drawable.ginger
     ),
     ExclusiveOffer(
+        id = 5,
         name = "Beef Bone",
         des = "1kg, Priceg",
         price = 4.99,
         img = R.drawable.beef_bone
     ),
     ExclusiveOffer(
+        id = 6,
         name = "Broiler Chicken",
         des = "1kg, Priceg",
         price = 4.99,
@@ -349,12 +287,12 @@ val exclusiveOfferItem = listOf(
 
 //@Preview
 @Composable
-fun NectarTopBar(){
-    Column (
+fun NectarTopBar() {
+    Column(
         modifier = Modifier
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
-    ){
+    ) {
         Image(
             painter = painterResource(id = R.drawable.orange_carrot),
             contentDescription = "Carrot Icon",
@@ -363,11 +301,11 @@ fun NectarTopBar(){
 
         Spacer(modifier = Modifier.height(15.dp))
 
-        Row (
+        Row(
 
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically
-        ){
+        ) {
             Icon(
                 imageVector = Icons.Rounded.LocationOn,
                 contentDescription = "Location Icon"
@@ -412,20 +350,19 @@ val bottomBarItems = listOf(
 
 //@Preview
 @Composable
-fun NectarBottomBar(){
-    Surface (
+fun NectarBottomBar() {
+    Surface(
         modifier = Modifier
             .clip(RoundedCornerShape(20.dp))
     ) {
         NavigationBar {
-            Row (
+            Row(
                 modifier = Modifier
                     .background(MaterialTheme.colorScheme.inverseOnSurface)
                     .padding(10.dp)
                     .clip(RoundedCornerShape(20.dp))
-            ){
-                bottomBarItems.forEachIndexed {
-                        index, item ->
+            ) {
+                bottomBarItems.forEachIndexed { index, item ->
                     NavigationBarItem(
                         selected = index == 0,
                         onClick = {},

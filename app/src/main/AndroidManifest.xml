@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme._10__THUN_MENGSE_PVH_OOP_Practice003">
         <activity
-            android:name=".ProductDetailActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme._10__THUN_MENGSE_PVH_OOP_Practice003">

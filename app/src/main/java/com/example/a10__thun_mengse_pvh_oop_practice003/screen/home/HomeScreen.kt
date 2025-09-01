@@ -1,9 +1,5 @@
-package com.example.a10__thun_mengse_pvh_oop_practice003.ui.HomeActivity
+package com.example.a10__thun_mengse_pvh_oop_practice003.screen.home
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -49,79 +45,65 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
 import com.example.a10__thun_mengse_pvh_oop_practice003.data.BottomNavigation
 import com.example.a10__thun_mengse_pvh_oop_practice003.data.ExclusiveOffer
+import com.example.a10__thun_mengse_pvh_oop_practice003.ui.HomeActivity.exclusiveOfferItem
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.RowSection
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.SearchField
 
-class HomeActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            Home()
-        }
-    }
-}
-
-//@Preview(showSystemUi = true)
 @Composable
-fun Home() {
-    Scaffold(
-        bottomBar = {
-            NectarBottomBar()
-        }
-    ) { paddingValues ->
-        LazyColumn(
-            modifier = Modifier
-                .padding(paddingValues)
-                .padding(25.dp)
-        ) {
-            item {
-                NectarTopBar()
+fun HomeScreen(navController: NavController) {
+    LazyColumn(
+        modifier = Modifier
+            .padding(25.dp)
+    ) {
+        item {
+            NectarTopBar()
 
-                Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(15.dp))
 
-                SearchField()
+            SearchField()
 
-                Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
-                Box(
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()      // make Box fill the screen width
+                    .height(130.dp)
+                    .clip(RoundedCornerShape(15.dp))
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.banner),
+                    contentDescription = "Banner img",
                     modifier = Modifier
-                        .fillMaxWidth()      // make Box fill the screen width
-                        .height(130.dp)
-                        .clip(RoundedCornerShape(15.dp))
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.banner),
-                        contentDescription = "Banner img",
-                        modifier = Modifier
-                            .fillMaxWidth()   // make Image fill the Box width
-                            .fillMaxHeight(), // optional: match Box height
-                        contentScale = ContentScale.Crop // scales image to fill width nicely
-                    )
-                }
-
-                RowSection(sectionName = "Exclusive Offers", seeAll = "See All")
-
-                ProductSection()
-
-                RowSection(sectionName = "Best Selling", seeAll = "See All")
-
-                ProductSection()
-
-                RowSection(sectionName = "Groceries", seeAll = "See All")
-
-                GroceriesSection()
-
-                Spacer(modifier = Modifier.height(20.dp))
-
-                ProductSection()
+                        .fillMaxWidth()   // make Image fill the Box width
+                        .fillMaxHeight(), // optional: match Box height
+                    contentScale = ContentScale.Crop // scales image to fill width nicely
+                )
             }
+
+            RowSection(sectionName = "Exclusive Offers", seeAll = "See All")
+
+            ProductSection()
+
+            RowSection(sectionName = "Best Selling", seeAll = "See All")
+
+            ProductSection()
+
+            RowSection(sectionName = "Groceries", seeAll = "See All")
+
+            GroceriesSection()
+
+            Spacer(modifier = Modifier.height(20.dp))
+
+            ProductSection()
         }
     }
 }
+
+
 
 
 @Composable
@@ -346,43 +328,3 @@ val bottomBarItems = listOf(
     )
 )
 
-//@Preview
-@Composable
-fun NectarBottomBar() {
-    Surface(
-        modifier = Modifier
-            .clip(RoundedCornerShape(20.dp))
-    ) {
-        NavigationBar {
-            Row(
-                modifier = Modifier
-                    .background(MaterialTheme.colorScheme.inverseOnSurface)
-                    .padding(10.dp)
-                    .clip(RoundedCornerShape(20.dp))
-            ) {
-                bottomBarItems.forEachIndexed { index, item ->
-                    NavigationBarItem(
-                        selected = index == 0,
-                        onClick = {},
-                        icon = {
-                            Icon(
-                                imageVector = item.icon,
-                                contentDescription = item.label,
-                            )
-                        },
-                        label = {
-                            Text(
-                                text = item.label,
-                            )
-                        },
-                        colors = NavigationBarItemDefaults.colors(
-                            selectedIconColor = Color(0xFF53B175),
-                            selectedTextColor = Color(0xFF53B175),
-                            indicatorColor = Color.Transparent
-                        )
-                    )
-                }
-            }
-        }
-    }
-}

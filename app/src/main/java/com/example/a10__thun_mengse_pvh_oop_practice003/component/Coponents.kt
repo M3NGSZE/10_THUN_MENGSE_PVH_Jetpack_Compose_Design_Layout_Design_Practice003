@@ -1,4 +1,4 @@
-package com.example.a10__thun_mengse_pvh_oop_practice003.ui.component
+package com.example.a10__thun_mengse_pvh_oop_practice003.component
 
 import android.content.Context
 import android.content.Intent

@@ -1,11 +1,7 @@
-package com.example.a10__thun_mengse_pvh_oop_practice003.ui.SignupActivity
+package com.example.a10__thun_mengse_pvh_oop_practice003.screen.signup
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,24 +25,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.ui.LoginActivity.LoginActivity
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarPassField
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarTextField
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.Signup
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.TopSection
 
-class SignUpActivity : ComponentActivity(){
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            Signup()
-        }
-    }
-}
-
 @Composable
-fun Signup(){
+fun SignupScreen(navController: NavController){
     Column (
         modifier = Modifier
             .systemBarsPadding()
@@ -143,13 +130,13 @@ fun Signup(){
             password = password,
             context = context,
             setValidationState = { x,y, z ->
-                    isUsernameState = x
-                    isEmailState = y
-                    isPasswordState = z
+                isUsernameState = x
+                isEmailState = y
+                isPasswordState = z
 
             }
         ){
-            username,email,password , context , setValidationState->
+                username,email,password , context , setValidationState->
             validationSignUp(username, email, password, context, setValidationState)
         }
 
@@ -225,7 +212,7 @@ fun SignupButton(
     Button(
         onClick = {
             navigate(username, email, password, context){
-                x ,y,z -> setValidationState(x,y,z)
+                    x ,y,z -> setValidationState(x,y,z)
             }
 
         },
@@ -247,7 +234,7 @@ fun SignupButton(
 
 
 val validationSignUp : (String, String, String, Context, (Boolean, Boolean, Boolean) -> Unit) -> Unit = {
-    username, email, password, context , isValidateState   ->
+        username, email, password, context , isValidateState   ->
     if (isValidUsername(username) && isValidEmail(email) && isValidPassword(password)){
         val intent = Intent(context, LoginActivity::class.java)
         context.startActivity(intent)
@@ -264,4 +251,3 @@ val passwordRegex = Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@\$!%*?&])[A-Za
 fun isValidUsername(u: String) = usernameRegex.matches(u)
 fun isValidEmail(e: String) = emailRegex.matches(e)
 fun isValidPassword(p: String) = passwordRegex.matches(p)
-

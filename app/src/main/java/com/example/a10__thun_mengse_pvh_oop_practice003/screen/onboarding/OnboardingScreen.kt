@@ -1,9 +1,5 @@
-package com.example.a10__thun_mengse_pvh_oop_practice003.ui.OnboardingActivity
+package com.example.a10__thun_mengse_pvh_oop_practice003.screen.onboarding
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -28,22 +24,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
-import com.example.a10__thun_mengse_pvh_oop_practice003.ui.LoginActivity.LoginActivity
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarButton
-
-class OnboardingActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            Onboarding()
-        }
-    }
-}
+import com.example.a10__thun_mengse_pvh_oop_practice003.ui.LoginActivity.LoginActivity
 
 @Composable
-private fun Onboarding(){
+private fun OnboardingScreen(navController: NavController){
     Box(
         modifier = Modifier
             .fillMaxSize()

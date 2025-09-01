@@ -1,11 +1,7 @@
-package com.example.a10__thun_mengse_pvh_oop_practice003.ui.LoginActivity
+package com.example.a10__thun_mengse_pvh_oop_practice003.screen.login
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -30,25 +26,16 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.a10__thun_mengse_pvh_oop_practice003.ui.SignupActivity.SignUpActivity
-import com.example.a10__thun_mengse_pvh_oop_practice003.ui.HomeActivity.HomeActivity
+import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarPassField
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarTextField
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.Signup
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.TopSection
-
-class LoginActivity : ComponentActivity(){
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            Login()
-        }
-    }
-}
+import com.example.a10__thun_mengse_pvh_oop_practice003.ui.HomeActivity.HomeActivity
+import com.example.a10__thun_mengse_pvh_oop_practice003.ui.SignupActivity.SignUpActivity
 
 @Composable
-private fun Login(){
+fun LoginScreen(navController: NavController){
     Column (
         modifier = Modifier
             .systemBarsPadding()
@@ -178,4 +165,3 @@ private val validation : (String, String, Context, (Boolean) -> Unit) -> Unit = 
         validateState(false)
     }
 }
-

@@ -38,7 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
-import com.example.a10__thun_mengse_pvh_oop_practice003.data.ExclusiveOffer
+import com.example.a10__thun_mengse_pvh_oop_practice003.data.ProductMoreFields
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.RowSection
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.SearchField
 
@@ -227,42 +227,42 @@ fun ItemRender(index: Int) {
 
 // initialize value for render data
 val exclusiveOfferItem = listOf(
-    ExclusiveOffer(
+    ProductMoreFields(
         id = 1,
         name = "Organic Bananas",
         des = "7pcs, Priceg",
         price = 4.99,
         img = R.drawable.banana
     ),
-    ExclusiveOffer(
+    ProductMoreFields(
         id = 2,
         name = "Red Apple",
         des = "1kg, Priceg",
         price = 4.99,
         img = R.drawable.apple
     ),
-    ExclusiveOffer(
+    ProductMoreFields(
         id = 3,
         name = "Bell Pepper Red",
         des = "1kg, Priceg",
         price = 4.99,
         img = R.drawable.bell_pepper
     ),
-    ExclusiveOffer(
+    ProductMoreFields(
         id = 4,
         name = "Ginger",
         des = "250gm, Priceg",
         price = 4.99,
         img = R.drawable.ginger
     ),
-    ExclusiveOffer(
+    ProductMoreFields(
         id = 5,
         name = "Beef Bone",
         des = "1kg, Priceg",
         price = 4.99,
         img = R.drawable.beef_bone
     ),
-    ExclusiveOffer(
+    ProductMoreFields(
         id = 6,
         name = "Broiler Chicken",
         des = "1kg, Priceg",

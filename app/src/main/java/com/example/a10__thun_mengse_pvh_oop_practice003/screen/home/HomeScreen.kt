@@ -55,34 +55,11 @@ import com.example.a10__thun_mengse_pvh_oop_practice003.component.SearchField
 
 @Composable
 fun HomeScreen(navController: NavController) {
-    LazyColumn(
-        modifier = Modifier
-            .padding(25.dp)
-    ) {
+
+    LazyColumn{
         item {
-            NectarTopBar()
 
-            Spacer(modifier = Modifier.height(15.dp))
-
-            SearchField()
-
-            Spacer(modifier = Modifier.height(20.dp))
-
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()      // make Box fill the screen width
-                    .height(130.dp)
-                    .clip(RoundedCornerShape(15.dp))
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.banner),
-                    contentDescription = "Banner img",
-                    modifier = Modifier
-                        .fillMaxWidth()   // make Image fill the Box width
-                        .fillMaxHeight(), // optional: match Box height
-                    contentScale = ContentScale.Crop // scales image to fill width nicely
-                )
-            }
+            TopHomeSection()
 
             RowSection(sectionName = "Exclusive Offers", seeAll = "See All")
 
@@ -100,6 +77,42 @@ fun HomeScreen(navController: NavController) {
 
             ProductSection()
         }
+    }
+}
+
+@Composable
+fun TopHomeSection(){
+    Column (
+        modifier = Modifier.padding(start = 16.dp, end = 16.dp)
+    ){
+        NectarTopBar()
+
+        Spacer(modifier = Modifier.height(15.dp))
+
+        SearchField()
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        HomeBanner()
+    }
+}
+
+@Composable
+fun HomeBanner(){
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()      // make Box fill the screen width
+            .height(130.dp)
+            .clip(RoundedCornerShape(15.dp))
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.banner),
+            contentDescription = "Banner img",
+            modifier = Modifier
+                .fillMaxWidth()   // make Image fill the Box width
+                .fillMaxHeight(), // optional: match Box height
+            contentScale = ContentScale.Crop // scales image to fill width nicely
+        )
     }
 }
 
@@ -128,21 +141,16 @@ fun ProductSection() {
 @Composable
 fun ItemRender(index: Int) {
     val exclusive = exclusiveOfferItem[index]
-    var firstPaddingStart = 16.dp
     var lastPaddingEnd = 0.dp
 
     if (index == exclusiveOfferItem.size - 1) {
         lastPaddingEnd = 16.dp
     }
 
-    if (index == 0) {
-        firstPaddingStart = 0.dp
-    }
-
     Box(
         modifier = Modifier
             .padding(
-                start = firstPaddingStart,
+                start = 16.dp,
                 end = lastPaddingEnd
             )
     ) {
@@ -265,7 +273,7 @@ val exclusiveOfferItem = listOf(
     )
 )
 
-//@Preview
+
 @Composable
 fun NectarTopBar() {
     Column(

@@ -83,7 +83,7 @@ fun Home() {
 
                 Spacer(modifier = Modifier.height(15.dp))
 
-                SearchField()
+//                SearchField()
 
                 Spacer(modifier = Modifier.height(20.dp))
 

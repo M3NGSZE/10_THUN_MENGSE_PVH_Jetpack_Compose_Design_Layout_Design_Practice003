@@ -245,7 +245,6 @@ fun Signup(description1: String, description2: String, context: Context, activit
     }
 }
 
-@Preview
 @Composable
 fun SearchField(){
 
@@ -299,7 +298,9 @@ fun RowSection(sectionName: String, seeAll: String){
     Spacer(modifier = Modifier.height(20.dp))
 
     Row (
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 15.dp, end = 15.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.Bottom
     ){

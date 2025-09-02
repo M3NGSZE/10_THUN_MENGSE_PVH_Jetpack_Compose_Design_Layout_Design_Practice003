@@ -48,23 +48,19 @@ fun GroceriesSection(){
 @Composable
 fun GroceryRender(index: Int){
     val groceries = groceryItems[index]
-    var firstPaddingStart = 16.dp
     var lastPaddingEnd = 0.dp
 
     if (index == exclusiveOfferItem.size - 1){
         lastPaddingEnd = 16.dp
     }
 
-    if (index == 0){
-        firstPaddingStart = 0.dp
-    }
 
     val bgColor = if (index == 0) 0xFFFCF0E3 else 0xFFE4F2E9
 
     Box(
         modifier = Modifier
             .padding(
-                start = firstPaddingStart,
+                start = 16.dp,
                 end = lastPaddingEnd
             )
     ){

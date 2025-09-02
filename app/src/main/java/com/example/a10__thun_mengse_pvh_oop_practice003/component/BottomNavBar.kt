@@ -21,7 +21,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -40,7 +39,7 @@ fun BottomNavBar(navController: NavController) {
     val currentRoute = navBackStackEntry?.destination?.route
 
 
-    var selectedItem by remember { mutableStateOf(Screen.Home.route) }
+//    var selectedItem by remember { mutableStateOf(Screen.Home.route) }
 
     val selectedTabs = listOf(
         remember { mutableStateOf(Screen.Home.route) },
@@ -50,8 +49,10 @@ fun BottomNavBar(navController: NavController) {
         remember { mutableStateOf(Screen.Account.route) }
     )
 
+    Log.d("currentRoute","${currentRoute}")
+
     fun onNavigate(route: String) {
-        selectedItem = route
+//        selectedItem = route
         navController.navigate(route)
     }
 
@@ -64,17 +65,18 @@ fun BottomNavBar(navController: NavController) {
                 modifier = Modifier
                     .background(Color(0xFFFDFDFD))
                     .padding(10.dp)
-                    .clip(RoundedCornerShape(20.dp))
+//                    .clip(RoundedCornerShape(20.dp))
             ) {
                 bottomBarItems.forEachIndexed { index, item ->
                     NavigationBarItem(
 
                         // access route
-                        // selected = selectedItem.startsWith(Screen.Home.route.substringBefore("/")),
+//                         selected = selectedItem.startsWith(Screen.Home.route.substringBefore("/")),
 
-                        selected = selectedItem == selectedTabs[index].value,
+                        selected = currentRoute == selectedTabs[index].value,
+
                         onClick = {
-                            Log.d("currentRoute","${currentRoute}")
+//                            Log.d("currentRoute","${selectedTabs[index].value}")
                             onNavigate(selectedTabs[index].value)
                         },
 

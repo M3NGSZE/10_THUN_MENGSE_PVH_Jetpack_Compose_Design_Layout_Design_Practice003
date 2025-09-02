@@ -40,7 +40,7 @@ import com.example.a10__thun_mengse_pvh_oop_practice003.component.SearchField
 
 @Composable
 fun HomeScreen(navController: NavController) {
-    LazyColumn(modifier = Modifier.background(Color.Blue)){
+    LazyColumn(){
         item {
 
             TopHomeSection()

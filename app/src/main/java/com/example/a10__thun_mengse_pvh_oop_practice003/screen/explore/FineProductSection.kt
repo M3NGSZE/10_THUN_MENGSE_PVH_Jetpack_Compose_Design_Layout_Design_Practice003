@@ -73,7 +73,9 @@ val findProductsItems = listOf(
 fun GridProduct(){
     LazyVerticalGrid (
         columns = GridCells.Fixed(2),
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(start = 10.dp, end = 10.dp,)
     ) {
         items(findProductsItems, key = {item -> item.id}){
                 it -> FindProductsItems(it)
@@ -86,7 +88,7 @@ fun FindProductsItems(item: FindProduct){
 //    var item = findProductsItems[index]
     Card (
         modifier = Modifier
-            .padding(start = 16.dp, top = 16.dp, end = 16.dp,)
+            .padding(start = 10.dp, top = 16.dp, end = 10.dp,)
             .fillMaxWidth()
             .height(220.dp),
         elevation = CardDefaults.cardElevation(8.dp),

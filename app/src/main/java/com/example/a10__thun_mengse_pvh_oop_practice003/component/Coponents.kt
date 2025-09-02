@@ -307,7 +307,7 @@ fun RowSection(sectionName: String, seeAll: String){
         Text(
             text = sectionName,
             fontSize = 29.sp,
-            fontWeight = FontWeight.Medium
+            fontWeight = FontWeight.Bold
         )
         Text(
             text = seeAll,

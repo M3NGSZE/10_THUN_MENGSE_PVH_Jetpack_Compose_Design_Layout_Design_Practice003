@@ -1,5 +1,8 @@
+@file:OptIn(ExperimentalFoundationApi::class)
+
 package com.example.a10__thun_mengse_pvh_oop_practice003.screen.home
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -10,6 +13,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -41,9 +45,11 @@ import com.example.a10__thun_mengse_pvh_oop_practice003.component.SearchField
 @Composable
 fun HomeScreen(navController: NavController) {
     LazyColumn(){
-        item {
-
+        stickyHeader {
             TopHomeSection()
+        }
+        item {
+            HomeBanner()
 
             RowSection(sectionName = "Exclusive Offers", seeAll = "See All")
 
@@ -67,17 +73,24 @@ fun HomeScreen(navController: NavController) {
 @Composable
 fun TopHomeSection(){
     Column (
-        modifier = Modifier.padding(start = 16.dp, end = 16.dp)
+        modifier = Modifier
+            .background(Color(0xFFFCF5FD))
+            .fillMaxSize()
+
     ){
-        NectarTopBar()
+        Column (
+            modifier = Modifier
+            .padding(start = 16.dp, end = 16.dp)
+        ){
+            NectarTopBar()
 
-        Spacer(modifier = Modifier.height(15.dp))
+            Spacer(modifier = Modifier.height(15.dp))
 
-        SearchField()
+            SearchField()
 
-        Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(20.dp))
+        }
 
-        HomeBanner()
     }
 }
 
@@ -88,6 +101,7 @@ fun HomeBanner(){
             .fillMaxWidth()      // make Box fill the screen width
             .height(130.dp)
             .clip(RoundedCornerShape(15.dp))
+            .padding(start = 16.dp, end = 16.dp)
     ) {
         Image(
             painter = painterResource(id = R.drawable.banner),

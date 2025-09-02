@@ -1,7 +1,6 @@
 package com.example.a10__thun_mengse_pvh_oop_practice003.screen.login
 
 import android.content.Context
-import android.content.Intent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -29,10 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarPassField
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarTextField
-import com.example.a10__thun_mengse_pvh_oop_practice003.component.Signup
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.TopSection
-import com.example.a10__thun_mengse_pvh_oop_practice003.ui.HomeActivity.HomeActivity
-import com.example.a10__thun_mengse_pvh_oop_practice003.ui.SignupActivity.SignUpActivity
 
 @Composable
 fun LoginScreen(navController: NavController){
@@ -81,7 +77,7 @@ fun LoginScreen(navController: NavController){
         val description2 = "Don't have an account?"
         val description3 = "SignUp"
 
-        Signup(description2, description3, context, SignUpActivity())
+//        Signup(description2, description3, context, SignUpActivity())
     }
 }
 
@@ -158,8 +154,8 @@ private fun LoginButton(
 private val validation : (String, String, Context, (Boolean) -> Unit) -> Unit = {
         email, password , context, validateState->
     if (email == "chanelle@gmail.com" && password == "Chanelle123@"){
-        val intent = Intent(context, HomeActivity::class.java)
-        context.startActivity(intent)
+//        val intent = Intent(context, HomeActivity::class.java)
+//        context.startActivity(intent)
 //        validateState(true)
     } else {
         validateState(false)

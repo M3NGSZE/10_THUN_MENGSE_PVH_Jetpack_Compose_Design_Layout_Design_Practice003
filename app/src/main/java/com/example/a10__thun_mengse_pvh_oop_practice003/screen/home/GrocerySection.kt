@@ -24,7 +24,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
 import com.example.a10__thun_mengse_pvh_oop_practice003.data.Groceries
-import com.example.a10__thun_mengse_pvh_oop_practice003.ui.HomeActivity.exclusiveOfferItem
 
 val groceryItems = listOf(
     Groceries(

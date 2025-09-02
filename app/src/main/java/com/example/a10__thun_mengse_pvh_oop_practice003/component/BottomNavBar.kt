@@ -27,12 +27,19 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.a10__thun_mengse_pvh_oop_practice003.data.BottomNavigation
 import com.example.a10__thun_mengse_pvh_oop_practice003.navigation.Screen
 
 //@Preview
 @Composable
 fun BottomNavBar(navController: NavController) {
+
+    // access current route
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+
+
     var selectedItem by remember { mutableStateOf(Screen.Home.route) }
 
     val selectedTabs = listOf(
@@ -62,9 +69,12 @@ fun BottomNavBar(navController: NavController) {
                 bottomBarItems.forEachIndexed { index, item ->
                     NavigationBarItem(
 
+                        // access route
+                        // selected = selectedItem.startsWith(Screen.Home.route.substringBefore("/")),
+
                         selected = selectedItem == selectedTabs[index].value,
                         onClick = {
-//                            Log.d("selectIndex","${selectedTabs[index].value}")
+                            Log.d("currentRoute","${currentRoute}")
                             onNavigate(selectedTabs[index].value)
                         },
 

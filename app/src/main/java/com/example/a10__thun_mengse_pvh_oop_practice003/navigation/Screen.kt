@@ -5,9 +5,9 @@ const val ROOT_GRAPH_ROUTE = "root"
 const val AUTH_GRAPH_ROUTE = "auth"
 sealed class Screen(val route: String, val title: String){
     object Splash : Screen("splash_screen", "splash")
-    object Onboarding : Screen("home_screen", "home")
-    object Login : Screen("home_screen", "home")
-    object SignUp : Screen("home_screen", "home")
+    object Onboarding : Screen("onboarding_screen", "onboarding")
+    object Login : Screen("login_screen", "login")
+    object SignUp : Screen("signup_screen", "signup")
     object Home : Screen("home_screen", "home")
     object RootScaffold : Screen("Root_Scaffold", "Root")
 

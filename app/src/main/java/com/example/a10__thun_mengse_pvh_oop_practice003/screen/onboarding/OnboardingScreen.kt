@@ -26,11 +26,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
-import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarButton
-import com.example.a10__thun_mengse_pvh_oop_practice003.ui.LoginActivity.LoginActivity
 
 @Composable
-private fun OnboardingScreen(navController: NavController){
+fun OnboardingScreen(navController: NavController){
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -93,7 +91,7 @@ private fun OnboardingScreen(navController: NavController){
                 modifier = Modifier
                     .padding(16.dp)
             ){
-                NectarButton(context, LoginActivity(), text)
+//                NectarButton(context, LoginActivity(), text)
             }
 
         }

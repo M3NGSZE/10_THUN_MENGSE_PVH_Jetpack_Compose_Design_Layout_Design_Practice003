@@ -1,7 +1,6 @@
 package com.example.a10__thun_mengse_pvh_oop_practice003.screen.signup
 
 import android.content.Context
-import android.content.Intent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,10 +25,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.a10__thun_mengse_pvh_oop_practice003.ui.LoginActivity.LoginActivity
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarPassField
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarTextField
-import com.example.a10__thun_mengse_pvh_oop_practice003.component.Signup
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.TopSection
 
 @Composable
@@ -145,7 +142,7 @@ fun SignupScreen(navController: NavController){
         val description2 = "Already have an account?"
         val description3 = "SignIn"
 
-        Signup(description2, description3, context, LoginActivity())
+//        Signup(description2, description3, context, LoginActivity())
     }
 }
 
@@ -236,8 +233,8 @@ fun SignupButton(
 val validationSignUp : (String, String, String, Context, (Boolean, Boolean, Boolean) -> Unit) -> Unit = {
         username, email, password, context , isValidateState   ->
     if (isValidUsername(username) && isValidEmail(email) && isValidPassword(password)){
-        val intent = Intent(context, LoginActivity::class.java)
-        context.startActivity(intent)
+//        val intent = Intent(context, LoginActivity::class.java)
+//        context.startActivity(intent)
         isValidateState(true, true, true)
     }else {
         isValidateState(isValidUsername(username), isValidEmail(email), isValidPassword(password))

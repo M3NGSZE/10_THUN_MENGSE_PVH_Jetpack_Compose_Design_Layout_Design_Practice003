@@ -21,8 +21,8 @@ fun AppNavigation(navController: NavHostController){
             startDestination = ROOT_GRAPH_ROUTE,
             navController = navController,
         ) {
+            authNavGraph(navController = navController)
             rootNavGraph(navController = navController)
-//            authNavGraph(navController = navController)
         }
     }
 }

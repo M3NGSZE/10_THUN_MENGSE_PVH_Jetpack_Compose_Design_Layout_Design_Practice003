@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -21,19 +20,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Add
-import androidx.compose.material.icons.rounded.FavoriteBorder
-import androidx.compose.material.icons.rounded.LocationOn
-import androidx.compose.material.icons.rounded.PersonOutline
-import androidx.compose.material.icons.rounded.Search
-import androidx.compose.material.icons.rounded.ShoppingCart
-import androidx.compose.material.icons.rounded.StoreMallDirectory
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemDefaults
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -47,18 +34,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
-import com.example.a10__thun_mengse_pvh_oop_practice003.data.BottomNavigation
 import com.example.a10__thun_mengse_pvh_oop_practice003.data.ExclusiveOffer
-import com.example.a10__thun_mengse_pvh_oop_practice003.ui.HomeActivity.exclusiveOfferItem
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.RowSection
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.SearchField
 
 @Composable
 fun HomeScreen(navController: NavController) {
-
-    LazyColumn(
-
-    ){
+    LazyColumn(modifier = Modifier.background(Color.Blue)){
         item {
 
             TopHomeSection()
@@ -276,44 +258,7 @@ val exclusiveOfferItem = listOf(
 )
 
 
-@Composable
-fun NectarTopBar() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Image(
-            painter = painterResource(id = R.drawable.orange_carrot),
-            contentDescription = "Carrot Icon",
-            modifier = Modifier.size(40.dp)
-        )
 
-        Spacer(modifier = Modifier.height(15.dp))
-
-        Row(
-
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Icon(
-                imageVector = Icons.Rounded.LocationOn,
-                contentDescription = "Location Icon"
-            )
-
-            Spacer(modifier = Modifier.width(8.dp))
-
-            Text(
-                text = "Dhaka, Banassre",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Medium,
-//                color = Color(0xFF919090),
-            )
-        }
-
-
-    }
-}
 
 
 

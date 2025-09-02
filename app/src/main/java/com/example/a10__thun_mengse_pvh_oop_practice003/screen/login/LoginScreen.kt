@@ -28,13 +28,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarPassField
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarTextField
+import com.example.a10__thun_mengse_pvh_oop_practice003.component.Signup
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.TopSection
+import com.example.a10__thun_mengse_pvh_oop_practice003.navigation.Screen
 
 @Composable
 fun LoginScreen(navController: NavController){
     Column (
         modifier = Modifier
-            .systemBarsPadding()
             .padding(25.dp)
     ){
 
@@ -50,7 +51,7 @@ fun LoginScreen(navController: NavController){
         var email by remember { mutableStateOf("") }
 
         NectarTextField(
-            label = "Email1",
+            label = "Email",
         ) { e -> email = e}
 
         Spacer(modifier = Modifier.height(35.dp))
@@ -70,14 +71,14 @@ fun LoginScreen(navController: NavController){
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        LoginButton(email, password, context) { v -> validationState = v }
+        LoginButton(email, password, navController) { v -> validationState = v }
 
         Spacer(modifier = Modifier.height(30.dp))
 
         val description2 = "Don't have an account?"
         val description3 = "SignUp"
 
-//        Signup(description2, description3, context, SignUpActivity())
+        Signup(description2, description3, navController, Screen.SignUp.route)
     }
 }
 
@@ -122,7 +123,7 @@ private fun ForgotPassword(){
 private fun LoginButton(
     email: String,
     password: String,
-    context: Context,
+    navController: NavController,
     setValidationState:(Boolean)-> Unit){
 
     var validationState by remember { mutableStateOf(true) }
@@ -130,7 +131,7 @@ private fun LoginButton(
 
     Button(
         onClick = {
-            validation(email, password, context){
+            validation(email, password, navController){
                     it -> validationState = it
             }
         },
@@ -151,12 +152,10 @@ private fun LoginButton(
 }
 
 // validation
-private val validation : (String, String, Context, (Boolean) -> Unit) -> Unit = {
-        email, password , context, validateState->
+private val validation : (String, String, NavController, (Boolean) -> Unit) -> Unit = {
+        email, password , navController, validateState->
     if (email == "chanelle@gmail.com" && password == "Chanelle123@"){
-//        val intent = Intent(context, HomeActivity::class.java)
-//        context.startActivity(intent)
-//        validateState(true)
+        navController.navigate(Screen.Home.route)
     } else {
         validateState(false)
     }

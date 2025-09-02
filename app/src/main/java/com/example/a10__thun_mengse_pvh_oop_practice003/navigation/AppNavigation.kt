@@ -39,7 +39,7 @@ fun AppNavigation(navController: NavHostController){
             navController = navController,
         ) {
             authNavGraph(navController = navController)
-//            rootNavGraph(navController = navController)
+            rootNavGraph(navController = navController)
         }
     }
 }

@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarButton
+import com.example.a10__thun_mengse_pvh_oop_practice003.navigation.Screen
 
 @Composable
 fun OnboardingScreen(navController: NavController){
@@ -92,7 +93,7 @@ fun OnboardingScreen(navController: NavController){
                 modifier = Modifier
                     .padding(16.dp)
             ){
-//                NectarButton(context, LoginActivity(), text)
+                NectarButton(text, navController, Screen.Login.route)
             }
 
         }

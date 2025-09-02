@@ -47,7 +47,7 @@ import androidx.compose.ui.unit.sp
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
 
 @Composable
-fun NectarButton(context: Context, screen: ComponentActivity, text: String){
+fun NectarButton2(context: Context, screen: ComponentActivity, text: String){
     Button(
         onClick = {
             val intent = Intent(context, screen::class.java)

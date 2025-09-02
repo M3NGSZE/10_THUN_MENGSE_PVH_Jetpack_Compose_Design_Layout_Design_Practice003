@@ -27,7 +27,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarPassField
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarTextField
+import com.example.a10__thun_mengse_pvh_oop_practice003.component.Signup
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.TopSection
+import com.example.a10__thun_mengse_pvh_oop_practice003.navigation.Screen
 
 @Composable
 fun SignupScreen(navController: NavController){
@@ -121,11 +123,11 @@ fun SignupScreen(navController: NavController){
         Spacer(modifier = Modifier.height(30.dp))
 
         SignupButton(
-            label = "Sign Upl",
+            label = "Sign Up",
             username = username,
             email = email,
             password = password,
-            context = context,
+            navController = navController,
             setValidationState = { x,y, z ->
                 isUsernameState = x
                 isEmailState = y
@@ -142,7 +144,7 @@ fun SignupScreen(navController: NavController){
         val description2 = "Already have an account?"
         val description3 = "SignIn"
 
-//        Signup(description2, description3, context, LoginActivity())
+        Signup(description2, description3, navController, Screen.Login.route)
     }
 }
 
@@ -195,9 +197,9 @@ fun SignupButton(
     username: String,
     email: String,
     password: String,
-    context: Context,
+    navController: NavController,
     setValidationState: (Boolean, Boolean, Boolean) -> Unit,
-    navigate: (String, String, String, Context, (Boolean, Boolean, Boolean) -> Unit) -> Unit
+    navigate: (String, String, String, NavController, (Boolean, Boolean, Boolean) -> Unit) -> Unit
 ){
 
     var isUsername by remember { mutableStateOf(true) }
@@ -208,7 +210,7 @@ fun SignupButton(
 
     Button(
         onClick = {
-            navigate(username, email, password, context){
+            navigate(username, email, password, navController){
                     x ,y,z -> setValidationState(x,y,z)
             }
 
@@ -230,11 +232,10 @@ fun SignupButton(
 }
 
 
-val validationSignUp : (String, String, String, Context, (Boolean, Boolean, Boolean) -> Unit) -> Unit = {
-        username, email, password, context , isValidateState   ->
+val validationSignUp : (String, String, String, NavController, (Boolean, Boolean, Boolean) -> Unit) -> Unit = {
+        username, email, password, navController , isValidateState   ->
     if (isValidUsername(username) && isValidEmail(email) && isValidPassword(password)){
-//        val intent = Intent(context, LoginActivity::class.java)
-//        context.startActivity(intent)
+        navController.navigate(Screen.Login.route)
         isValidateState(true, true, true)
     }else {
         isValidateState(isValidUsername(username), isValidEmail(email), isValidPassword(password))

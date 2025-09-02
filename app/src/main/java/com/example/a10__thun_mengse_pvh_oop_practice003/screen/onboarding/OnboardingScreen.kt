@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
+import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarButton
 
 @Composable
 fun OnboardingScreen(navController: NavController){

@@ -8,13 +8,14 @@ import androidx.navigation.navigation
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.account.AccountScreen
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.cart.CartScreen
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.explore.ExploreScreen
+import com.example.a10__thun_mengse_pvh_oop_practice003.screen.explore.exploreProduct.BeverageScreen
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.favorite.FavoriteScreen
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.home.HomeScreen
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.splash.SplashScreen
 
 
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+
 fun NavGraphBuilder.rootNavGraph(
   navController: NavHostController
 ) {
@@ -44,6 +45,10 @@ fun NavGraphBuilder.rootNavGraph(
 
         composable(route = Screen.Account.route) {
             AccountScreen(navController = navController)
+        }
+
+        composable (route = Screen.Beverage.route){
+            BeverageScreen(navController = navController)
         }
 
     }

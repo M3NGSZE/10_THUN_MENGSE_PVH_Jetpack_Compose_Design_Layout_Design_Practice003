@@ -3,26 +3,43 @@ package com.example.a10__thun_mengse_pvh_oop_practice003.navigation
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.BottomNavBar
 
 
 @Composable
 fun AppNavigation(navController: NavHostController){
+
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+
+    val bottomRoute = listOf(
+        Screen.Home.route,
+        Screen.Explore.route,
+        Screen.Cart.route,
+        Screen.Favorite.route,
+        Screen.Account.route,
+    )
+
     Scaffold (
         bottomBar = {
-            BottomNavBar(navController = navController)
+            if (currentRoute in bottomRoute){
+                BottomNavBar(navController = navController)
+            }
         }
     ) { innerPadding ->
         NavHost(
             modifier = Modifier.padding(paddingValues = innerPadding),
-            startDestination = ROOT_GRAPH_ROUTE,
+//            startDestination = ROOT_GRAPH_ROUTE,
+            startDestination = AUTH_GRAPH_ROUTE,
             navController = navController,
         ) {
-//            authNavGraph(navController = navController)
-            rootNavGraph(navController = navController)
+            authNavGraph(navController = navController)
+//            rootNavGraph(navController = navController)
         }
     }
 }

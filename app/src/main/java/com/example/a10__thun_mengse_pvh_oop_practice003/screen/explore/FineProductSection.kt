@@ -1,6 +1,7 @@
 package com.example.a10__thun_mengse_pvh_oop_practice003.screen.explore
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,8 +24,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
 import com.example.a10__thun_mengse_pvh_oop_practice003.data.FindProduct
+import com.example.a10__thun_mengse_pvh_oop_practice003.navigation.Screen
 
 val findProductsItems = listOf(
     FindProduct(
@@ -70,7 +73,7 @@ val findProductsItems = listOf(
 )
 
 @Composable
-fun GridProduct(){
+fun GridProduct(navController: NavController){
     LazyVerticalGrid (
         columns = GridCells.Fixed(2),
         modifier = Modifier
@@ -78,19 +81,23 @@ fun GridProduct(){
             .padding(start = 10.dp, end = 10.dp,)
     ) {
         items(findProductsItems, key = {item -> item.id}){
-                it -> FindProductsItems(it)
+                it -> FindProductsItems(it, navController)
         }
     }
 }
 
 @Composable
-fun FindProductsItems(item: FindProduct){
+fun FindProductsItems(item: FindProduct, navController: NavController){
 //    var item = findProductsItems[index]
+//    val navController: NavController
     Card (
         modifier = Modifier
             .padding(start = 10.dp, top = 16.dp, end = 10.dp,)
             .fillMaxWidth()
-            .height(220.dp),
+            .height(220.dp)
+            .clickable {
+                navController.navigate(route = Screen.Beverage.route)
+            },
         elevation = CardDefaults.cardElevation(8.dp),
 //        shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(

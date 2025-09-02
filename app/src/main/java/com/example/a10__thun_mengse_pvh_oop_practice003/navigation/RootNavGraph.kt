@@ -9,7 +9,10 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarBottomBar
+import com.example.a10__thun_mengse_pvh_oop_practice003.screen.account.AccountScreen
+import com.example.a10__thun_mengse_pvh_oop_practice003.screen.cart.CartScreen
+import com.example.a10__thun_mengse_pvh_oop_practice003.screen.explore.ExploreScreen
+import com.example.a10__thun_mengse_pvh_oop_practice003.screen.favorite.FavoriteScreen
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.home.HomeScreen
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.splash.SplashScreen
 
@@ -27,16 +30,37 @@ fun NavGraphBuilder.rootNavGraph(
             SplashScreen(navController = navController)
         }
 
-        composable(Screen.Home.route) {
-            Scaffold(
-                bottomBar = { NectarBottomBar() },
-                modifier = Modifier.systemBarsPadding(),
-                containerColor = Color.Blue
-            ) {
-                HomeScreen(
-                    navController = navController,
-                )
-            }
+        composable(route = Screen.Home.route) {
+            HomeScreen(navController = navController)
         }
+
+        composable(route = Screen.Explore.route) {
+            ExploreScreen(navController = navController)
+        }
+
+        composable(route = Screen.Cart.route) {
+            CartScreen(navController = navController)
+        }
+
+        composable(route = Screen.Favorite.route) {
+            FavoriteScreen(navController = navController)
+        }
+
+        composable(route = Screen.Account.route) {
+            AccountScreen(navController = navController)
+        }
+
     }
 }
+
+//        composable(Screen.Home.route) {
+//            Scaffold(
+//                bottomBar = { NectarBottomBar(navController = navController) },
+//                modifier = Modifier.systemBarsPadding(),
+//            ) {
+//                HomeScreen(
+//                    navController = navController,
+//                )
+//                ExploreScreen(navController = navController)
+//            }
+//        }

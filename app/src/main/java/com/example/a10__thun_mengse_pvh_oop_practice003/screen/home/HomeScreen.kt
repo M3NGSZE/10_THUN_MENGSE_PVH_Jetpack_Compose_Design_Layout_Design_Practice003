@@ -56,7 +56,9 @@ import com.example.a10__thun_mengse_pvh_oop_practice003.component.SearchField
 @Composable
 fun HomeScreen(navController: NavController) {
 
-    LazyColumn{
+    LazyColumn(
+
+    ){
         item {
 
             TopHomeSection()
@@ -313,26 +315,5 @@ fun NectarTopBar() {
     }
 }
 
-val bottomBarItems = listOf(
-    BottomNavigation(
-        label = "Shop",
-        icon = Icons.Rounded.StoreMallDirectory
-    ),
-    BottomNavigation(
-        label = "Explore",
-        icon = Icons.Rounded.Search
-    ),
-    BottomNavigation(
-        label = "Cart",
-        icon = Icons.Rounded.ShoppingCart
-    ),
-    BottomNavigation(
-        label = "Favorite",
-        icon = Icons.Rounded.FavoriteBorder
-    ),
-    BottomNavigation(
-        label = "Account",
-        icon = Icons.Rounded.PersonOutline
-    )
-)
+
 

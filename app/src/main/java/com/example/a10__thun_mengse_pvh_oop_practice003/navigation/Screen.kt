@@ -10,4 +10,10 @@ sealed class Screen(val route: String, val title: String){
     object SignUp : Screen("home_screen", "home")
     object Home : Screen("home_screen", "home")
     object RootScaffold : Screen("Root_Scaffold", "Root")
+
+    object Explore : Screen("Explore_Screen", "Explore")
+    object Cart : Screen("Cart_Screen", "Cart")
+    object Favorite : Screen("Favorite_Screen", "Favorite")
+    object Account : Screen("Account_Screen", "Account")
+
 }

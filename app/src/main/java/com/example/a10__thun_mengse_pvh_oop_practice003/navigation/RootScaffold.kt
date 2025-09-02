@@ -7,7 +7,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarBottomBar
 import com.example.a10__thun_mengse_pvh_oop_practice003.navigation.rootNavGraph
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.home.HomeScreen
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.splash.SplashScreen

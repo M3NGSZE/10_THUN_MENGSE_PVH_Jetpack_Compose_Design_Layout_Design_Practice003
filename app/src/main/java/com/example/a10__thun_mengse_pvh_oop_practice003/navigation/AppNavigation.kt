@@ -1,5 +1,6 @@
 package com.example.a10__thun_mengse_pvh_oop_practice003.navigation
 
+import android.util.Log
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.Scaffold
@@ -11,6 +12,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.BottomNavBar
+import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarButton
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.cart.CartScreen
 
 
@@ -35,10 +37,10 @@ fun AppNavigation(navController: NavHostController){
                 BottomNavBar(navController = navController)
             }
         },
-        floatingActionButton = {
-
-        },
-        floatingActionButtonPosition = FabPosition.End
+//        floatingActionButton = {
+//            NectarButton("Go to Checkout", navController, "")
+//        },
+//        floatingActionButtonPosition = FabPosition.Center
     ) { innerPadding ->
         NavHost(
             modifier = Modifier.padding(paddingValues = innerPadding),

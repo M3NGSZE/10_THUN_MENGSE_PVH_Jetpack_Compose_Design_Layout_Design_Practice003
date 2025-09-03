@@ -18,7 +18,9 @@ import androidx.navigation.NavController
 fun NectarButton(text: String, navController: NavController, screenName: String){
     Button(
         onClick = {
-            navController.navigate(screenName)
+            if (screenName != ""){
+                navController.navigate(screenName)
+            }
         },
         colors = ButtonDefaults.buttonColors(
             containerColor = Color(0xFF53B175)

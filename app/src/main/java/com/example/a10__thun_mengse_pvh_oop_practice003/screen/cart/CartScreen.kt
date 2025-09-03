@@ -20,6 +20,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarButton
+import com.example.a10__thun_mengse_pvh_oop_practice003.component.TopbarGeneral
 
 @Composable
 fun CartScreen(navController: NavController){
@@ -32,42 +33,12 @@ fun CartScreen(navController: NavController){
 }
 
 @Composable
-fun TopbarGeneral(title: String) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .drawBehind {
-                val strokeWidth = 2.dp.toPx()
-                val y = size.height - strokeWidth / 2
-                drawLine(
-                    color = Color(0xFFB2B2B2),
-                    start = Offset(0f, y),
-                    end = Offset(size.width, y),
-                    strokeWidth = strokeWidth
-                )
-            },
-        horizontalArrangement = Arrangement.Center,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(
-            text = title,
-            fontWeight = FontWeight.Bold,
-            fontSize = 30.sp,
-            modifier = Modifier
-                .padding(top = 20.dp, bottom = 40.dp)
-        )
-    }
-}
-
-@Composable
 fun ConstraintButton(navController: NavController){
     ConstraintLayout (
         modifier = Modifier
             .fillMaxSize()
     ){
-
         val (cart, button) = createRefs()
-
 
         Column (
             modifier = Modifier.constrainAs(cart) {

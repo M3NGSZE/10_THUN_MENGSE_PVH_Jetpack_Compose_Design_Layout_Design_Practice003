@@ -1,19 +1,67 @@
 package com.example.a10__thun_mengse_pvh_oop_practice003.screen.favorite
 
-import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Text
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.constraintlayout.compose.Dimension
 import androidx.navigation.NavController
+import com.example.a10__thun_mengse_pvh_oop_practice003.component.CartItem
+import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarButton
+import com.example.a10__thun_mengse_pvh_oop_practice003.component.TopbarGeneral
+import com.example.a10__thun_mengse_pvh_oop_practice003.screen.explore.exploreProduct.beverageItems
 
 @Composable
 fun FavoriteScreen(navController: NavController){
+    Column {
+        TopbarGeneral("Favorite")
+        ConstraintButton(navController)
+    }
+}
+
+@Composable
+fun ConstraintButton(navController: NavController){
+    ConstraintLayout (
+        modifier = Modifier
+            .fillMaxSize()
+    ){
+        val (cart, button) = createRefs()
+
+        Column (
+            modifier = Modifier.constrainAs(cart) {
+                top.linkTo(parent.top)
+            }
+        ){
+            FavoriteSection(navController)
+        }
+
+        Column (
+            modifier = Modifier.constrainAs(button) {
+                bottom.linkTo(parent.bottom, margin = 24.dp) // <--- key change
+                start.linkTo(parent.start, margin = 16.dp)
+                end.linkTo(parent.end, margin = 16.dp)
+                width = Dimension.fillToConstraints
+            }
+        ){
+            NectarButton("Add ALl To Cart", navController, "",)
+        }
+    }
+}
+
+@Composable
+fun FavoriteSection(navController: NavController){
     LazyColumn (
-        modifier = Modifier.systemBarsPadding()
-    ) {
-        item{
-            Text("Explore screen")
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(start = 16.dp, end = 16.dp)
+    ){
+        items(beverageItems, key = { item -> item.id}){
+                it -> CartItem(it, navController, false)
         }
     }
 }

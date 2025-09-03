@@ -116,16 +116,20 @@ fun MyCartSection(navController: NavController){
             .padding(start = 16.dp, end = 16.dp)
     ){
         items(cartItems, key = {item -> item.id}){
-                it -> CartItem(it, navController)
+                it -> CartItem(it, navController, true)
         }
     }
 }
 
 @Composable
-fun CartItem(item: ProductMoreFields, navController: NavController){
+fun CartItem(item: ProductMoreFields, navController: NavController, isAmountX: Boolean = false){
+
+//    val height = if (!isAmountX) 160.dp else 0.dp
+
     Row (
         modifier = Modifier
             .fillMaxWidth()
+//            .height(height)
             .drawBehind {
                 val strokeWidth = 1.dp.toPx()
                 val y = size.height - strokeWidth / 2
@@ -171,69 +175,76 @@ fun CartItem(item: ProductMoreFields, navController: NavController){
                     fontSize = 16.sp
                 )
 
-                Spacer(modifier = Modifier.height(20.dp))
+                if (isAmountX){
+                    Spacer(modifier = Modifier.height(20.dp))
 
-                Row (
-                    modifier = Modifier.width(150.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ){
-                    IconButton(
-                        modifier = Modifier
-                            .border(
-                                width = 1.dp,
-                                color = Color.Gray,
-                                shape = RoundedCornerShape(16.dp)
-                            ),
-                        onClick = {},
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Remove,
-                            contentDescription = "Close",
-                            tint = Color(0xFFB2B2B2),
-                            modifier = Modifier.size(30.dp)
+                    Row (
+                        modifier = Modifier.width(150.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ){
+                        IconButton(
+                            modifier = Modifier
+                                .border(
+                                    width = 1.dp,
+                                    color = Color.Gray,
+                                    shape = RoundedCornerShape(16.dp)
+                                ),
+                            onClick = {},
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Remove,
+                                contentDescription = "Close",
+                                tint = Color(0xFFB2B2B2),
+                                modifier = Modifier.size(30.dp)
+                            )
+                        }
+
+                        Text(
+                            text = "${1}",
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 20.sp
                         )
-                    }
 
-                    Text(
-                        text = "${1}",
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp
-                    )
-
-                    IconButton(
-                        modifier = Modifier
-                            .border(
-                                width = 1.dp,
-                                color = Color.Gray,
-                                shape = RoundedCornerShape(16.dp)
-                            ),
-                        onClick = {},
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Add,
-                            contentDescription = "Close",
-                            tint = Color(0xFF53B074),
-                            modifier = Modifier.size(30.dp)
-                        )
+                        IconButton(
+                            modifier = Modifier
+                                .border(
+                                    width = 1.dp,
+                                    color = Color.Gray,
+                                    shape = RoundedCornerShape(16.dp)
+                                ),
+                            onClick = {},
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Add,
+                                contentDescription = "Close",
+                                tint = Color(0xFF53B074),
+                                modifier = Modifier.size(30.dp)
+                            )
+                        }
                     }
                 }
+
             }
 
             Column (
                 verticalArrangement = Arrangement.SpaceBetween,
                 horizontalAlignment = Alignment.End
             ){
-                IconButton(
-                    modifier = Modifier.padding(bottom = 50.dp),
-                    onClick = {},
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Close,
-                        contentDescription = "Close",
-                        tint = Color(0xFFB2B2B2),
-                        modifier = Modifier.size(30.dp)
-                    )
+                if (isAmountX){
+                    IconButton(
+                        modifier = Modifier.padding(bottom = 50.dp),
+                        onClick = {},
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Close,
+                            contentDescription = "Close",
+                            tint = Color(0xFFB2B2B2),
+                            modifier = Modifier.size(30.dp)
+                        )
+                    }
+
+
                 }
 
                 Spacer(modifier = Modifier.height(10.dp))
@@ -243,6 +254,7 @@ fun CartItem(item: ProductMoreFields, navController: NavController){
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp
                 )
+
             }
         }
 

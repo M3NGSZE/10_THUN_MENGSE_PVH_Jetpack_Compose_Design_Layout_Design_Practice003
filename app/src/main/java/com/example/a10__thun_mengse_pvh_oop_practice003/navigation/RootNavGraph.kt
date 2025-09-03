@@ -20,7 +20,7 @@ fun NavGraphBuilder.rootNavGraph(
   navController: NavHostController
 ) {
     navigation(
-        startDestination = Screen.Splash.route,
+        startDestination = Screen.Cart.route,
         route = ROOT_GRAPH_ROUTE
     ) {
         composable(route = Screen.Splash.route) {

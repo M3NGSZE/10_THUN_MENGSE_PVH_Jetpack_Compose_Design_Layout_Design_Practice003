@@ -1,5 +1,6 @@
 package com.example.a10__thun_mengse_pvh_oop_practice003.screen.explore
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -96,6 +97,7 @@ fun FindProductsItems(item: FindProduct, navController: NavController){
             .fillMaxWidth()
             .height(220.dp)
             .clickable {
+                Log.d("screenName","${Screen.Beverage.route}")
                 navController.navigate(route = Screen.Beverage.route)
             },
         elevation = CardDefaults.cardElevation(8.dp),

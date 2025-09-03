@@ -1,6 +1,5 @@
 package com.example.a10__thun_mengse_pvh_oop_practice003.navigation
 
-import android.annotation.SuppressLint
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
@@ -11,6 +10,7 @@ import com.example.a10__thun_mengse_pvh_oop_practice003.screen.explore.ExploreSc
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.explore.exploreProduct.BeverageScreen
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.favorite.FavoriteScreen
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.home.HomeScreen
+import com.example.a10__thun_mengse_pvh_oop_practice003.screen.search.SearchScreen
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.splash.SplashScreen
 
 
@@ -20,7 +20,7 @@ fun NavGraphBuilder.rootNavGraph(
   navController: NavHostController
 ) {
     navigation(
-        startDestination = Screen.Beverage.route,
+        startDestination = Screen.Search.route,
         route = ROOT_GRAPH_ROUTE
     ) {
         composable(route = Screen.Splash.route) {
@@ -49,6 +49,10 @@ fun NavGraphBuilder.rootNavGraph(
 
         composable (route = Screen.Beverage.route){
             BeverageScreen(navController = navController)
+        }
+
+        composable (route = Screen.Search.route){
+            SearchScreen(navController = navController)
         }
 
     }

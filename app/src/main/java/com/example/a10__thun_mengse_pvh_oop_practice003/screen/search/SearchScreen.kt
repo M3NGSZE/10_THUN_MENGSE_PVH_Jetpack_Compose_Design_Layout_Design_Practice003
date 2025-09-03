@@ -1,38 +1,36 @@
-package com.example.a10__thun_mengse_pvh_oop_practice003.screen.explore.exploreProduct
+package com.example.a10__thun_mengse_pvh_oop_practice003.screen.search
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBackIosNew
+import androidx.compose.material.icons.filled.Hevc
 import androidx.compose.material.icons.filled.Tune
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.a10__thun_mengse_pvh_oop_practice003.navigation.Screen
+import com.example.a10__thun_mengse_pvh_oop_practice003.component.SearchField
 
 @Composable
-fun BeverageScreen(navController: NavController){
+fun SearchScreen(navController: NavController){
     Column {
-        TopBeverageBar(navController)
-
-        BeverageSection(navController)
+        TopSearchApp(navController)
+        EggSection(navController)
     }
 }
 
 @Composable
-fun TopBeverageBar(navController: NavController){
+fun TopSearchApp(navController: NavController){
     Row (
         modifier = Modifier
             .fillMaxWidth()
@@ -40,29 +38,17 @@ fun TopBeverageBar(navController: NavController){
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ){
-        IconButton(
-            onClick = {
-                navController.navigate(Screen.Explore.route)
-            }
-        ) {
-            Icon(
-                imageVector = Icons.Default.ArrowBackIosNew,
-                contentDescription = "Back Arrow"
-            )
+        Box(
+            modifier = Modifier
+                .fillMaxWidth(0.9f)
+        ){
+            SearchField(isTrailing = true, navController = navController)
         }
-
-
-        Text(
-            text = "Beverages",
-            fontWeight = FontWeight.Bold,
-            fontSize = 23.sp
-        )
-
         Icon(
-//            imageVector = Icons.Default.AddRoad,
             imageVector = Icons.Default.Tune,
             contentDescription = "Back Arrow",
             modifier = Modifier.size(30.dp)
         )
+
     }
 }

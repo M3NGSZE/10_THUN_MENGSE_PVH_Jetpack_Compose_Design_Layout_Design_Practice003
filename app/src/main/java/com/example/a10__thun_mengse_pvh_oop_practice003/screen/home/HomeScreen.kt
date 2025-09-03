@@ -46,7 +46,7 @@ import com.example.a10__thun_mengse_pvh_oop_practice003.component.SearchField
 fun HomeScreen(navController: NavController) {
     LazyColumn(){
         stickyHeader {
-            TopHomeSection()
+            TopHomeSection(navController = navController)
         }
         item {
             HomeBanner()
@@ -71,7 +71,7 @@ fun HomeScreen(navController: NavController) {
 }
 
 @Composable
-fun TopHomeSection(){
+fun TopHomeSection(navController: NavController){
     Column (
         modifier = Modifier
             .background(Color(0xFFFCF5FD))
@@ -86,7 +86,7 @@ fun TopHomeSection(){
 
             Spacer(modifier = Modifier.height(15.dp))
 
-            SearchField()
+            SearchField(navController = navController, screenName = "")
 
             Spacer(modifier = Modifier.height(20.dp))
         }

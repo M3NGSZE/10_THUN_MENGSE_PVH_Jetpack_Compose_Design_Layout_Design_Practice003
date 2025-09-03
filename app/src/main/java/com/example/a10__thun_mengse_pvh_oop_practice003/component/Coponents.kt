@@ -2,6 +2,7 @@ package com.example.a10__thun_mengse_pvh_oop_practice003.component
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -17,6 +18,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Cancel
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -44,7 +46,9 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
+import com.example.a10__thun_mengse_pvh_oop_practice003.navigation.Screen
 
 @Composable
 fun NectarButton2(context: Context, screen: ComponentActivity, text: String){
@@ -246,7 +250,7 @@ fun Signup(description1: String, description2: String, context: Context, activit
 }
 
 @Composable
-fun SearchField(){
+fun SearchField(isTrailing: Boolean = false, navController: NavController, screenName: String = ""){
 
     var search by remember { mutableStateOf("") }
 
@@ -265,7 +269,12 @@ fun SearchField(){
         modifier = Modifier
             .fillMaxWidth()
             .height(65.dp)
-            .clip(RoundedCornerShape(20.dp)),
+            .clip(RoundedCornerShape(20.dp))
+            .clickable{
+                print(screenName)
+                Log.d("screenNamel","${screenName}")
+                navController.navigate(screenName)
+            },
         leadingIcon = {
             Icon(
                 imageVector = Icons.Rounded.Search,
@@ -275,6 +284,18 @@ fun SearchField(){
                     .size(30.dp)
             )
         },
+        trailingIcon = {
+            if (isTrailing){
+                Icon(
+                    imageVector = Icons.Rounded.Cancel,
+                    contentDescription = "Search Icon",
+                    modifier = Modifier
+                        .padding(start = 15.dp)
+//                        .size(30.dp)
+                )
+            }
+        },
+//        readOnly = true,
         singleLine = true,
         textStyle = TextStyle(
             fontSize = 18.sp,

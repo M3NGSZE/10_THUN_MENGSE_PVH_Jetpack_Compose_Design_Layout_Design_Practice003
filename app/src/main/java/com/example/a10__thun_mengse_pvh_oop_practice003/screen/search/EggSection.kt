@@ -1,4 +1,4 @@
-package com.example.a10__thun_mengse_pvh_oop_practice003.screen.explore.exploreProduct
+package com.example.a10__thun_mengse_pvh_oop_practice003.screen.search
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -35,49 +35,50 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
 import com.example.a10__thun_mengse_pvh_oop_practice003.data.ProductMoreFields
+import com.example.a10__thun_mengse_pvh_oop_practice003.screen.explore.exploreProduct.beverageItems
 
-val beverageItems = listOf(
+val eggItems = listOf(
     ProductMoreFields(
         id = 1,
-        name = "Diet Coke",
-        des = "355ml, Price",
+        name = "Egg Chicken Red",
+        des = "4pcs, Price",
         price = 1.99,
-        img = R.drawable.diet_coke
+        img = R.drawable.egg_chicken
     ),
     ProductMoreFields(
         id = 2,
-        name = "Sprite Can",
-        des = "325ml, Price",
+        name = "Egg Chicken White",
+        des = "180g, Price",
         price = 1.50,
-        img = R.drawable.sprike_can
+        img = R.drawable.egg_white
     ),
     ProductMoreFields(
         id = 3,
-        name = "Apple & Grape Juice",
-        des = "2L, Price",
+        name = "Egg Pasta",
+        des = "30g, Price",
         price = 15.99,
-        img = R.drawable.apple_grape_juice
+        img = R.drawable.egg_pasta
     ),
     ProductMoreFields(
         id = 4,
-        name = "Orange Juice",
-        des = "325ml, Price",
-        price = 4.99,
-        img = R.drawable.orange_juice
+        name = "Egg Noodles",
+        des = "2L, Price",
+        price = 15.99,
+        img = R.drawable.egg_noodle
     ),
     ProductMoreFields(
         id = 5,
-        name = "Coca Cola Can",
-        des = "330ml, Price",
+        name = "Mayonnaise Eggless",
+        des = "325ml, Price",
         price = 4.99,
-        img = R.drawable.cocacola
+        img = R.drawable.maynonnias_egg
     ),
     ProductMoreFields(
         id = 6,
-        name = "Pepsi Can",
-        des = "355ml, Price",
+        name = "Egg Noodles",
+        des = "350ml, Price",
         price = 4.99,
-        img = R.drawable.pepesi
+        img = R.drawable.egg_noodle_purple
     ),
     ProductMoreFields(
         id = 7,
@@ -93,25 +94,24 @@ val beverageItems = listOf(
         price = 1.50,
         img = R.drawable.sprike_can
     ),
-
 )
 
 @Composable
-fun BeverageSection(navController: NavController){
+fun EggSection(navController: NavController){
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
         modifier = Modifier
             .fillMaxSize()
             .padding(start = 10.dp, end = 10.dp,)
     ) {
-        items(beverageItems, key = {item -> item.id}){
-                it -> BeverageItems(it, navController)
+        items(eggItems, key = {item -> item.id}){
+                it -> EggItem(it, navController)
         }
     }
 }
 
 @Composable
-fun BeverageItems(item: ProductMoreFields, navController: NavController){
+fun EggItem(item: ProductMoreFields, navController: NavController){
     Card (
         modifier = Modifier
             .padding(start = 10.dp, end = 10.dp, top = 16.dp)
@@ -187,7 +187,6 @@ fun BeverageItems(item: ProductMoreFields, navController: NavController){
                         tint = Color.White
                     )
                 }
-
             }
         }
     }

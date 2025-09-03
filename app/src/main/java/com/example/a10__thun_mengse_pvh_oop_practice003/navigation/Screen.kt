@@ -16,5 +16,6 @@ sealed class Screen(val route: String, val title: String){
     object Favorite : Screen("Favorite_Screen", "Favorite")
     object Account : Screen("Account_Screen", "Account")
     object Beverage : Screen("Beverage_Screen", "Beverage")
+    object Search : Screen("Search_Screen", "Search")
 
 }

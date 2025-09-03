@@ -23,6 +23,7 @@ fun AppNavigation(navController: NavHostController){
         Screen.Cart.route,
         Screen.Favorite.route,
         Screen.Account.route,
+        Screen.Search.route,
     )
 
     Scaffold (
@@ -34,8 +35,8 @@ fun AppNavigation(navController: NavHostController){
     ) { innerPadding ->
         NavHost(
             modifier = Modifier.padding(paddingValues = innerPadding),
-//            startDestination = ROOT_GRAPH_ROUTE,
-            startDestination = AUTH_GRAPH_ROUTE,
+            startDestination = ROOT_GRAPH_ROUTE,
+//            startDestination = AUTH_GRAPH_ROUTE,
             navController = navController,
         ) {
             authNavGraph(navController = navController)

@@ -28,7 +28,7 @@ fun NectarButton(text: String, navController: NavController, screenName: String)
         shape = RoundedCornerShape(20.dp),
         modifier = Modifier
             .fillMaxWidth()
-            .height(70.dp)
+            .height(60.dp)
     ) {
         Text(
             text = text,

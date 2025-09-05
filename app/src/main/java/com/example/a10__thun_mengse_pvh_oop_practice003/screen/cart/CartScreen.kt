@@ -51,8 +51,8 @@ fun ConstraintButton(navController: NavController){
         Column (
             modifier = Modifier.constrainAs(button) {
                 bottom.linkTo(parent.bottom, margin = 24.dp) // <--- key change
-                start.linkTo(parent.start, margin = 16.dp)
-                end.linkTo(parent.end, margin = 16.dp)
+                start.linkTo(parent.start, margin = 18.dp)
+                end.linkTo(parent.end, margin = 18.dp)
                 width = Dimension.fillToConstraints
         }
         ){

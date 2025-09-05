@@ -122,7 +122,3 @@ fun MyCartSection(navController: NavController){
         }
     }
 }
-
-
-
-

@@ -3,6 +3,7 @@ package com.example.a10__thun_mengse_pvh_oop_practice003.screen.account
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -104,9 +105,12 @@ fun AccountMenuSection(navController: NavController){
 fun MenuItemCard(item: AccountMenu, navController: NavController){
     Row (
         modifier = Modifier
+            .clickable{
+
+            }
             .fillMaxWidth()
             .border(
-                border = BorderStroke(1.dp, Color(0x2E959494)),
+                border = BorderStroke(0.1.dp, Color(0x2E636363)),
                 shape = RectangleShape
             )
             .padding(start = 16.dp, end = 16.dp, top = 30.dp, bottom = 30.dp),
@@ -129,7 +133,9 @@ fun MenuItemCard(item: AccountMenu, navController: NavController){
         }
         Icon(
             imageVector = item.trailIcon,
-            contentDescription = item.title
+            contentDescription = item.title,
+            modifier = Modifier
+                .clickable{}
         )
     }
 }

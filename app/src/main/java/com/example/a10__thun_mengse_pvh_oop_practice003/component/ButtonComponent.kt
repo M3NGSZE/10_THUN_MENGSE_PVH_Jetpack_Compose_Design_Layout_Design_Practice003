@@ -15,7 +15,11 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
 @Composable
-fun NectarButton(text: String, navController: NavController, screenName: String){
+fun NectarButton(
+    text: String,
+    navController: NavController,
+    screenName: String,
+){
     Button(
         onClick = {
             if (screenName != ""){
@@ -23,7 +27,7 @@ fun NectarButton(text: String, navController: NavController, screenName: String)
             }
         },
         colors = ButtonDefaults.buttonColors(
-            containerColor = Color(0xFF53B175)
+            containerColor = Color(0xFF53B175),
         ),
         shape = RoundedCornerShape(20.dp),
         modifier = Modifier

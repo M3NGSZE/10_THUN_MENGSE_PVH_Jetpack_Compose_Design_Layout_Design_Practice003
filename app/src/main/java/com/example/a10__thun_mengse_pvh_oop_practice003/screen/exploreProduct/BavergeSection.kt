@@ -1,4 +1,4 @@
-package com.example.a10__thun_mengse_pvh_oop_practice003.screen.explore.exploreProduct
+package com.example.a10__thun_mengse_pvh_oop_practice003.screen.exploreProduct
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

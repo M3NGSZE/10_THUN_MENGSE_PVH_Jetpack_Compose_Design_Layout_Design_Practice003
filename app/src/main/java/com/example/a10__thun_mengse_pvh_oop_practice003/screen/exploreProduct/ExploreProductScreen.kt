@@ -1,4 +1,4 @@
-package com.example.a10__thun_mengse_pvh_oop_practice003.screen.explore.exploreProduct
+package com.example.a10__thun_mengse_pvh_oop_practice003.screen.exploreProduct
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -21,7 +21,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController

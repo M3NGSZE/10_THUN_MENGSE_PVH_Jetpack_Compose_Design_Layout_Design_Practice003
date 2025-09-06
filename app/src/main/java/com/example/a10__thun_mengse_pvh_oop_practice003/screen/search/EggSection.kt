@@ -35,7 +35,6 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
 import com.example.a10__thun_mengse_pvh_oop_practice003.data.ProductMoreFields
-import com.example.a10__thun_mengse_pvh_oop_practice003.screen.explore.exploreProduct.beverageItems
 
 val eggItems = listOf(
     ProductMoreFields(

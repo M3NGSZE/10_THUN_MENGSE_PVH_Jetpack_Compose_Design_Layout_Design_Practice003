@@ -27,7 +27,7 @@ fun SplashScreen(navController: NavController) {
 
     LaunchedEffect(Unit) {
         delay(2000) // 2 seconds
-        navController.navigate(Screen.Search.route){
+        navController.navigate(Screen.Cart.route){
             popUpTo(Screen.Splash.route) { inclusive = true } // remove splash from back stack
         }
     }

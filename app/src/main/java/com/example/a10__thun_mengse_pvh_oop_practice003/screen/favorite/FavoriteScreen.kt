@@ -14,7 +14,7 @@ import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.CartItem
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarButton
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.TopbarGeneral
-import com.example.a10__thun_mengse_pvh_oop_practice003.screen.explore.exploreProduct.beverageItems
+import com.example.a10__thun_mengse_pvh_oop_practice003.screen.exploreProduct.beverageItems
 
 @Composable
 fun FavoriteScreen(navController: NavController){

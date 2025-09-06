@@ -56,6 +56,12 @@ fun BottomNavBar(navController: NavController) {
         navController.navigate(route)
     }
 
+
+    // focus on explore when navigate to search
+    if (currentRoute == Screen.Search.route){
+        selectedTabs[1].value = currentRoute
+    }
+
     Surface(
         modifier = Modifier
             .clip(RoundedCornerShape(20.dp))
@@ -76,7 +82,7 @@ fun BottomNavBar(navController: NavController) {
                         selected = currentRoute == selectedTabs[index].value,
 
                         onClick = {
-//                            Log.d("currentRoute","${selectedTabs[index].value}")
+//                            Log.d("currentRoute","$currentRoute")
                             onNavigate(selectedTabs[index].value)
                         },
 

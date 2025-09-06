@@ -1,7 +1,5 @@
 package com.example.a10__thun_mengse_pvh_oop_practice003.screen.search
 
-import android.util.Log
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,7 +9,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Tune
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -38,10 +35,6 @@ fun SearchScreen(navController: NavController){
         TopSearchApp(navController){
             it -> isSheet = it
         }
-
-        Text(
-            text = "$isSheet"
-        )
 
         EggSection(navController)
 
@@ -92,7 +85,7 @@ fun TopSearchApp(navController: NavController, toggle : (Boolean) -> Unit){
 fun ShowSheet(isSheet: Boolean, getSheet : (Boolean) -> Unit){
     var showSheet = isSheet
     val sheetState = rememberModalBottomSheetState()
-    if (isSheet) {
+    if (showSheet) {
         ModalBottomSheet(
             onDismissRequest = {
                 showSheet = false

@@ -36,7 +36,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.a10__thun_mengse_pvh_oop_practice003.component.AccountMenu
+import com.example.a10__thun_mengse_pvh_oop_practice003.data.AccountMenu
 
 val menuItems = listOf(
     AccountMenu(

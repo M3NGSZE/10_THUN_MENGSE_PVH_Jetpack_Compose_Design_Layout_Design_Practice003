@@ -36,7 +36,7 @@ fun BottomNavBar(navController: NavController) {
 
     // access current route
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentRoute = navBackStackEntry?.destination?.route
+    var currentRoute = navBackStackEntry?.destination?.route
 
 
 //    var selectedItem by remember { mutableStateOf(Screen.Home.route) }
@@ -46,7 +46,8 @@ fun BottomNavBar(navController: NavController) {
         remember { mutableStateOf(Screen.Explore.route) },
         remember { mutableStateOf(Screen.Cart.route) },
         remember { mutableStateOf(Screen.Favorite.route) },
-        remember { mutableStateOf(Screen.Account.route) }
+        remember { mutableStateOf(Screen.Account.route) },
+//        remember { mutableStateOf(Screen.Search.route) },
     )
 
     Log.d("currentRoute","${currentRoute}")
@@ -56,10 +57,9 @@ fun BottomNavBar(navController: NavController) {
         navController.navigate(route)
     }
 
-
     // focus on explore when navigate to search
     if (currentRoute == Screen.Search.route){
-        selectedTabs[1].value = currentRoute
+        currentRoute = selectedTabs[1].value
     }
 
     Surface(
@@ -74,6 +74,7 @@ fun BottomNavBar(navController: NavController) {
 //                    .clip(RoundedCornerShape(20.dp))
             ) {
                 bottomBarItems.forEachIndexed { index, item ->
+
                     NavigationBarItem(
 
                         // access route
@@ -84,6 +85,7 @@ fun BottomNavBar(navController: NavController) {
                         onClick = {
 //                            Log.d("currentRoute","$currentRoute")
                             onNavigate(selectedTabs[index].value)
+
                         },
 
                         icon = {

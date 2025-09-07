@@ -23,6 +23,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
@@ -39,6 +43,8 @@ import com.example.a10__thun_mengse_pvh_oop_practice003.data.ProductMoreFields
 fun CartItem(item: ProductMoreFields, navController: NavController, isAmountX: Boolean = false){
 
     val height = if (!isAmountX) 160.dp else 160.dp
+
+    var amount by remember { mutableIntStateOf(1) }
 
     Row (
         modifier = Modifier
@@ -104,7 +110,9 @@ fun CartItem(item: ProductMoreFields, navController: NavController, isAmountX: B
                                     color = Color.Gray,
                                     shape = RoundedCornerShape(16.dp)
                                 ),
-                            onClick = {},
+                            onClick = {
+                                amount = if (amount == 1) 1 else amount -1
+                            },
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Remove,
@@ -115,7 +123,7 @@ fun CartItem(item: ProductMoreFields, navController: NavController, isAmountX: B
                         }
 
                         Text(
-                            text = "${1}",
+                            text = "$amount",
                             fontWeight = FontWeight.Bold,
                             fontSize = 20.sp
                         )
@@ -127,7 +135,9 @@ fun CartItem(item: ProductMoreFields, navController: NavController, isAmountX: B
                                     color = Color.Gray,
                                     shape = RoundedCornerShape(16.dp)
                                 ),
-                            onClick = {},
+                            onClick = {
+                                amount += 1
+                            },
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Add,
@@ -159,7 +169,7 @@ fun CartItem(item: ProductMoreFields, navController: NavController, isAmountX: B
                 val amountTop = if (!isAmountX) 40.dp else 0.dp
 
                 Text(
-                    text = "$ ${item.price}",
+                    text = "$ ${((item.price * amount) * 100).toInt() / 100.0}",
                     fontWeight = FontWeight.Bold,
                     fontSize = 20.sp,
                     modifier = Modifier.padding(top = amountTop)

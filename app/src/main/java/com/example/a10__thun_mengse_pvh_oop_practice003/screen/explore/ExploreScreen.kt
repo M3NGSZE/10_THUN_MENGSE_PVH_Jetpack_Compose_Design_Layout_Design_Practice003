@@ -96,8 +96,9 @@ fun NavigateOnFocusTextField(navController: NavController) {
         placeholder = {
             Text(
                 text = "Search Store",
-                fontSize = 18.sp,
-                fontWeight = FontWeight.Medium
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Medium,
+                modifier = Modifier.padding(top = 3.dp)
             )
         },
         leadingIcon = {

@@ -2,7 +2,9 @@ package com.example.a10__thun_mengse_pvh_oop_practice003.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.account.AccountScreen
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.cart.CartScreen
@@ -21,7 +23,7 @@ fun NavGraphBuilder.rootNavGraph(
   navController: NavHostController
 ) {
     navigation(
-        startDestination = Screen.Cart.route,
+        startDestination = Screen.Detail.route,
         route = ROOT_GRAPH_ROUTE
     ) {
         composable(route = Screen.Splash.route) {
@@ -56,8 +58,15 @@ fun NavGraphBuilder.rootNavGraph(
             SearchScreen(navController = navController)
         }
 
-        composable (route = Screen.Detail.route){
-            DetailProductScreen(navController = navController)
+        composable (
+            route = Screen.Detail.route,
+            arguments = listOf(navArgument(name = "productId"){
+                type = NavType.StringType
+//                defaultValue = ""
+            })
+        ){backStackEntry ->
+            val productId = backStackEntry.arguments?.getString("productId")
+            DetailProductScreen(navController = navController, productId = productId)
         }
 
     }

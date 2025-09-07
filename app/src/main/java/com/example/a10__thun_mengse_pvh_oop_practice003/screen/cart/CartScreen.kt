@@ -1,21 +1,10 @@
 package com.example.a10__thun_mengse_pvh_oop_practice003.screen.cart
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import androidx.navigation.NavController
@@ -56,7 +45,7 @@ fun ConstraintButton(navController: NavController){
                 width = Dimension.fillToConstraints
         }
         ){
-            NectarButton("Go to Checkout", navController, "",)
+            NectarButton("Go to Checkout", navController, "")
         }
     }
 }

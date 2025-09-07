@@ -10,14 +10,15 @@ sealed class Screen(val route: String, val title: String){
     object SignUp : Screen("signup_screen", "signup")
     object Home : Screen("home_screen", "home")
     object RootScaffold : Screen("Root_Scaffold", "Root")
-
     object Explore : Screen("Explore_Screen", "Explore")
     object Cart : Screen("Cart_Screen", "Cart")
     object Favorite : Screen("Favorite_Screen", "Favorite")
     object Account : Screen("Account_Screen", "Account")
     object Beverage : Screen("Beverage_Screen", "Beverage")
     object Search : Screen("Search_Screen", "Search")
-    object Detail : Screen("Detail_Screen", "Detail")
+    object Detail : Screen("Detail_Screen/{productId}", "Detail"){
+        fun createRoute(productId: String) = "Detail_Screen/$productId"
+    }
     object Accept : Screen("Accept_Screen", "Accept")
 
 }

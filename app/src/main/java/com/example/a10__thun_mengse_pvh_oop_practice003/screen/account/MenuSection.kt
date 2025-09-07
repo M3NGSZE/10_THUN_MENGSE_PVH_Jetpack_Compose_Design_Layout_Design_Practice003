@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.data.AccountMenu
+import com.example.a10__thun_mengse_pvh_oop_practice003.navigation.Screen
 
 val menuItems = listOf(
     AccountMenu(
@@ -91,14 +92,29 @@ val menuItems = listOf(
 
 @Composable
 fun AccountMenuSection(navController: NavController){
-    LazyColumn (
-        modifier = Modifier
-            .fillMaxSize()
+    Column (
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.SpaceBetween
     ){
-        items(menuItems, key = { item -> item.id }){it->
-            MenuItemCard(it, navController)
+        LazyColumn {
+            items(menuItems, key = { item -> item.id }){it->
+                MenuItemCard(it, navController)
+            }
+        }
+
+        Column (
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ){
+            AccountButton(
+                text = "Log Out",
+                navController = navController,
+                screenName = Screen.Login.route,
+            )
         }
     }
+
 }
 
 @Composable

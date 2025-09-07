@@ -40,7 +40,12 @@ import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.data.ProductMoreFields
 
 @Composable
-fun CartItem(item: ProductMoreFields, navController: NavController, isAmountX: Boolean = false){
+fun CartItem(
+    item: ProductMoreFields,
+    navController: NavController,
+    isAmountX: Boolean = false,
+    getTotalPrice: ((Double) -> Unit)? = null
+){
 
     val height = if (!isAmountX) 160.dp else 160.dp
 

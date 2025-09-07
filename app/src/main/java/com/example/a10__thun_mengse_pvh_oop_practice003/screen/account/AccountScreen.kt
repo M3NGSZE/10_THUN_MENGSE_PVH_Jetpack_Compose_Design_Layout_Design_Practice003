@@ -31,7 +31,9 @@ import com.example.a10__thun_mengse_pvh_oop_practice003.navigation.Screen
 fun AccountScreen(navController: NavController){
     Column {
         TopBarAcc(navController)
-        AccountConstraint(navController)
+        AccountMenuSection(navController)
+
+//        AccountConstraint(navController)
     }
 }
 

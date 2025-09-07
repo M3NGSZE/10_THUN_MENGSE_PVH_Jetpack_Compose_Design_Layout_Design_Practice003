@@ -23,7 +23,12 @@ fun NectarButton(
     Button(
         onClick = {
             if (screenName != ""){
-                navController.navigate(screenName)
+                navController.navigate(screenName){
+                    launchSingleTop = true
+                    popUpTo(screenName){
+                        inclusive = true
+                    }
+                }
             }
         },
         colors = ButtonDefaults.buttonColors(

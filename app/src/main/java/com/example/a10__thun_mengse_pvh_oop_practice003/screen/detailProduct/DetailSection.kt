@@ -44,7 +44,7 @@ import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarButton
 import com.example.a10__thun_mengse_pvh_oop_practice003.data.ProductMoreFields
 
 @Composable
-fun DetailProductSection(item: ProductMoreFields, navController: NavController){
+fun DetailProductSection(item: ProductMoreFields?, navController: NavController){
 
     var isFavorite by remember { mutableStateOf(false) }
     var amountItems by remember { mutableIntStateOf(1) }
@@ -69,7 +69,7 @@ fun DetailProductSection(item: ProductMoreFields, navController: NavController){
             verticalAlignment = Alignment.CenterVertically
         ){
             Text(
-                text = item.name,
+                text = item?.name!!,
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -96,7 +96,7 @@ fun DetailProductSection(item: ProductMoreFields, navController: NavController){
         }
 
         Text(
-            text = item.des,
+            text = item?.des!!,
             color = Color.Gray,
             fontSize = 16.sp,
             fontWeight = FontWeight.Medium

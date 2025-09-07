@@ -12,13 +12,13 @@ import com.example.a10__thun_mengse_pvh_oop_practice003.screen.home.exclusiveOff
 @Composable
 fun DetailProductScreen(navController: NavController, productId: String?){
 
-//    val index: Int? = productId?.toInt()?.minus(1)
+    val index: Int? = productId?.toInt()?.minus(1)
 
-//    val product = index?.let { exclusiveOfferItem[it] }
+    val product = index?.let { exclusiveOfferItem[it] }
 
 
 
-    val product = exclusiveOfferItem[2-1]
+//    val product = exclusiveOfferItem[2-1]
 
     Column (
         modifier = Modifier
@@ -26,7 +26,7 @@ fun DetailProductScreen(navController: NavController, productId: String?){
             .verticalScroll(rememberScrollState())
     ){
 
-        TopImgSection(product, navController)
+        TopImgSection(navController,product)
 
         DetailProductSection(product, navController)
     }

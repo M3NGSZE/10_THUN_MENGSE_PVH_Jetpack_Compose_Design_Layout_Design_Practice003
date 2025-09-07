@@ -26,7 +26,7 @@ import com.example.a10__thun_mengse_pvh_oop_practice003.data.ProductMoreFields
 import com.example.a10__thun_mengse_pvh_oop_practice003.navigation.Screen
 
 @Composable
-fun TopImgSection(img: ProductMoreFields, navController: NavController){
+fun TopImgSection(navController: NavController ,img: ProductMoreFields?){
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -41,7 +41,7 @@ fun TopImgSection(img: ProductMoreFields, navController: NavController){
             .padding(start = 16.dp, end = 16.dp)
     ){
         Image(
-            painter = painterResource(img.img),
+            painter = painterResource(img?.img!!), // if use img as int can pass like this img!! not nullable
             contentDescription = "",
             modifier = Modifier
                 .width(350.dp)

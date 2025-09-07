@@ -122,12 +122,12 @@ fun FilterSection(title: String, checkList: List<CheckCategory>){
                 verticalAlignment = Alignment.CenterVertically
             ){
                 Checkbox(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(8.dp)),
                     checked = isCategory[index],
                     onCheckedChange = {
                         isCategory[index] = !isCategory[index]
                     },
-                    modifier = Modifier
-                        .clip(RoundedCornerShape(8.dp)),
                     colors = CheckboxDefaults.colors(
                         checkedColor = Color(0xFF53B074)
                     )

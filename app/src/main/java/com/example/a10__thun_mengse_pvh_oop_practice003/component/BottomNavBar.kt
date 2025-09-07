@@ -54,7 +54,12 @@ fun BottomNavBar(navController: NavController) {
 
     fun onNavigate(route: String) {
 //        selectedItem = route
-        navController.navigate(route)
+        navController.navigate(route){
+            launchSingleTop = true
+            popUpTo(route){
+                inclusive = true
+            }
+        }
     }
 
     // focus on explore when navigate to search

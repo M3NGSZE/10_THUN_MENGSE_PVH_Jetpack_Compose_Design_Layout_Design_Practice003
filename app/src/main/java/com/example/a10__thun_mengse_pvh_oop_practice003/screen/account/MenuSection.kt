@@ -100,19 +100,21 @@ fun AccountMenuSection(navController: NavController){
             items(menuItems, key = { item -> item.id }){it->
                 MenuItemCard(it, navController)
             }
+            item {
+                Column (
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                ){
+                    AccountButton(
+                        text = "Log Out",
+                        navController = navController,
+                        screenName = Screen.Login.route,
+                    )
+                }
+            }
         }
 
-        Column (
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp)
-        ){
-            AccountButton(
-                text = "Log Out",
-                navController = navController,
-                screenName = Screen.Login.route,
-            )
-        }
     }
 
 }

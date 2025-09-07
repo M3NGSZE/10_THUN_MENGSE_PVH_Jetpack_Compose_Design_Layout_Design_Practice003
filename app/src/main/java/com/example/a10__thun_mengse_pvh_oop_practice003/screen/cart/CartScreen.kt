@@ -47,6 +47,7 @@ import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarButton
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.TopbarGeneral
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.checkBrand
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.checkCategory
+import com.example.a10__thun_mengse_pvh_oop_practice003.navigation.Screen
 
 @Composable
 fun CartScreen(navController: NavController){
@@ -237,7 +238,7 @@ fun OrderButton(navController: NavController){
 
         Spacer(modifier = Modifier.height(23.dp))
 
-        NectarButton("Place Order", navController, "")
+        NectarButton("Place Order", navController, Screen.Accept.route)
     }
 }
 

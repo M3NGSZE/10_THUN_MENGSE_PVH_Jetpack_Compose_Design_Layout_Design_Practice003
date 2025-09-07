@@ -13,6 +13,7 @@ import com.example.a10__thun_mengse_pvh_oop_practice003.screen.explore.ExploreSc
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.exploreProduct.BeverageScreen
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.favorite.FavoriteScreen
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.home.HomeScreen
+import com.example.a10__thun_mengse_pvh_oop_practice003.screen.orderAccept.OrderAcceptScreen
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.search.SearchScreen
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.splash.SplashScreen
 
@@ -67,6 +68,10 @@ fun NavGraphBuilder.rootNavGraph(
         ){backStackEntry ->
             val productId = backStackEntry.arguments?.getString("productId")
             DetailProductScreen(navController = navController, productId = productId)
+        }
+
+        composable (route = Screen.Accept.route){
+            OrderAcceptScreen(navController = navController)
         }
 
     }

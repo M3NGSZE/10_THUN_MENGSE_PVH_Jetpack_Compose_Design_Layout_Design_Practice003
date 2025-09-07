@@ -16,10 +16,6 @@ fun DetailProductScreen(navController: NavController, productId: String?){
 
     val product = index?.let { exclusiveOfferItem[it] }
 
-
-
-//    val product = exclusiveOfferItem[2-1]
-
     Column (
         modifier = Modifier
             .fillMaxSize()

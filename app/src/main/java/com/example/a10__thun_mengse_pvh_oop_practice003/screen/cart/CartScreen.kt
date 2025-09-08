@@ -1,5 +1,6 @@
 package com.example.a10__thun_mengse_pvh_oop_practice003.screen.cart
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Cancel
@@ -25,10 +27,13 @@ import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -89,7 +94,94 @@ fun CartScreen(navController: NavController){
 }
 
 @Composable
+fun ConstraintButton1(navController: NavController, getShow: (Boolean) -> Unit) {
+    val listState = rememberLazyListState()
+    val showButton = remember { mutableStateOf(true) } // visible at top initially
+
+    // previous values to detect direction
+    val prevIndex = remember { mutableStateOf(0) }
+    val prevOffset = remember { mutableStateOf(0) }
+
+    // Listen to the listState changes safely with snapshotFlow
+    LaunchedEffect (listState) {
+        snapshotFlow { listState.firstVisibleItemIndex to listState.firstVisibleItemScrollOffset }
+            .collect { (index, offset) ->
+                val scrollingUp = if (index != prevIndex.value) {
+                    index < prevIndex.value
+                } else {
+                    offset < prevOffset.value
+                }
+
+                prevIndex.value = index
+                prevOffset.value = offset
+
+                val visible = scrollingUp || index == 0 // show at top or when scrolling up
+                if (visible != showButton.value) {
+                    showButton.value = visible
+                    getShow(visible) // notify parent only when changed
+                }
+            }
+    }
+
+    ConstraintLayout(modifier = Modifier.fillMaxSize()) {
+        val (cartRef, buttonRef) = createRefs()
+
+        Column(
+            modifier = Modifier.constrainAs(cartRef) {
+                top.linkTo(parent.top)
+                bottom.linkTo(parent.bottom)
+                start.linkTo(parent.start)
+                end.linkTo(parent.end)
+                height = Dimension.fillToConstraints
+            }
+        ) {
+            // IMPORTANT: MyCartSection must use this listState (see below)
+            MyCartSection(navController = navController, listState = listState)
+        }
+
+        AnimatedVisibility(
+            visible = showButton.value,
+            modifier = Modifier.constrainAs(buttonRef) {
+                bottom.linkTo(parent.bottom, margin = 26.dp)
+                start.linkTo(parent.start, margin = 18.dp)
+                end.linkTo(parent.end, margin = 18.dp)
+                width = Dimension.fillToConstraints
+            }
+        ) {
+            CheckoutButton(
+                text = "Go to Checkout",
+                12.97
+            ) {
+                getShow(it)
+            }
+        }
+    }
+}
+
+
+@Composable
 fun ConstraintButton(navController: NavController, getShow: (Boolean)-> Unit) {
+
+    val listState = rememberLazyListState()
+
+    // Track scroll direction
+    var previousIndex by remember { mutableStateOf(0) }
+    var previousScrollOffset by remember { mutableStateOf(0) }
+
+    val isScrollingUp by remember {
+        derivedStateOf {
+            if (listState.firstVisibleItemIndex != previousIndex) {
+                val scrollingUp = listState.firstVisibleItemIndex < previousIndex
+                previousIndex = listState.firstVisibleItemIndex
+                previousScrollOffset = listState.firstVisibleItemScrollOffset
+                scrollingUp
+            } else {
+                val scrollingUp = listState.firstVisibleItemScrollOffset < previousScrollOffset
+                previousScrollOffset = listState.firstVisibleItemScrollOffset
+                scrollingUp
+            }
+        }
+    }
 
     ConstraintLayout(
         modifier = Modifier
@@ -102,12 +194,29 @@ fun ConstraintButton(navController: NavController, getShow: (Boolean)-> Unit) {
                 top.linkTo(parent.top)
             }
         ) {
-            MyCartSection(navController)
+            MyCartSection(navController, listState)
         }
 
-        Column(
+        //        Column(
+//            modifier = Modifier.constrainAs(button) {
+//                bottom.linkTo(parent.bottom, margin = 26.dp) // <--- key change
+//                start.linkTo(parent.start, margin = 18.dp)
+//                end.linkTo(parent.end, margin = 18.dp)
+//                width = Dimension.fillToConstraints
+//            }
+//        ) {
+//            CheckoutButton(
+//                text = "Go to Checkout",
+//                12.97
+//            ){
+//                getShow(it)
+//            }
+//        }
+
+        AnimatedVisibility (
+            visible = isScrollingUp,
             modifier = Modifier.constrainAs(button) {
-                bottom.linkTo(parent.bottom, margin = 26.dp) // <--- key change
+                bottom.linkTo(parent.bottom, margin = 26.dp)
                 start.linkTo(parent.start, margin = 18.dp)
                 end.linkTo(parent.end, margin = 18.dp)
                 width = Dimension.fillToConstraints
@@ -116,7 +225,7 @@ fun ConstraintButton(navController: NavController, getShow: (Boolean)-> Unit) {
             CheckoutButton(
                 text = "Go to Checkout",
                 12.97
-            ){
+            ) {
                 getShow(it)
             }
         }

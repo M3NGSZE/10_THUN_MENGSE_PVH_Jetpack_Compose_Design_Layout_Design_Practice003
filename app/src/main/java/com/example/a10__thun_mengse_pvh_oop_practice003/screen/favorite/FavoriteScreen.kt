@@ -1,5 +1,6 @@
 package com.example.a10__thun_mengse_pvh_oop_practice003.screen.favorite
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -11,7 +12,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Cancel
@@ -22,6 +25,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -45,6 +49,7 @@ import com.example.a10__thun_mengse_pvh_oop_practice003.component.SwipeToDeleteC
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.TopbarGeneral
 import com.example.a10__thun_mengse_pvh_oop_practice003.data.ProductMoreFields
 import com.example.a10__thun_mengse_pvh_oop_practice003.navigation.Screen
+import com.example.a10__thun_mengse_pvh_oop_practice003.screen.cart.CheckoutButton
 
 @Composable
 fun FavoriteScreen(navController: NavController){
@@ -56,6 +61,28 @@ fun FavoriteScreen(navController: NavController){
 
 @Composable
 fun ConstraintButton(navController: NavController){
+
+    val listState = rememberLazyListState()
+
+    // Track scroll direction
+    var previousIndex by remember { mutableStateOf(0) }
+    var previousScrollOffset by remember { mutableStateOf(0) }
+
+    val isScrollingUp by remember {
+        derivedStateOf {
+            if (listState.firstVisibleItemIndex != previousIndex) {
+                val scrollingUp = listState.firstVisibleItemIndex < previousIndex
+                previousIndex = listState.firstVisibleItemIndex
+                previousScrollOffset = listState.firstVisibleItemScrollOffset
+                scrollingUp
+            } else {
+                val scrollingUp = listState.firstVisibleItemScrollOffset < previousScrollOffset
+                previousScrollOffset = listState.firstVisibleItemScrollOffset
+                scrollingUp
+            }
+        }
+    }
+
     ConstraintLayout (
         modifier = Modifier
             .fillMaxSize()
@@ -67,17 +94,28 @@ fun ConstraintButton(navController: NavController){
                 top.linkTo(parent.top)
             }
         ){
-            FavoriteSection(navController)
+            FavoriteSection(navController, listState)
         }
 
-        Column (
+//        Column (
+//            modifier = Modifier.constrainAs(button) {
+//                bottom.linkTo(parent.bottom, margin = 24.dp) // <--- key change
+//                start.linkTo(parent.start, margin = 18.dp)
+//                end.linkTo(parent.end, margin = 18.dp)
+//                width = Dimension.fillToConstraints
+//            }
+//        ){
+//            NectarButton("Add All To Cart", navController, Screen.Cart.route)
+//        }
+        AnimatedVisibility (
+            visible = isScrollingUp,
             modifier = Modifier.constrainAs(button) {
-                bottom.linkTo(parent.bottom, margin = 24.dp) // <--- key change
+                bottom.linkTo(parent.bottom, margin = 26.dp)
                 start.linkTo(parent.start, margin = 18.dp)
                 end.linkTo(parent.end, margin = 18.dp)
                 width = Dimension.fillToConstraints
             }
-        ){
+        ) {
             NectarButton("Add All To Cart", navController, Screen.Cart.route)
         }
     }
@@ -174,7 +212,7 @@ fun AlertImg(navController: NavController, onOff: (Boolean) -> Unit){
 
 
 @Composable
-fun FavoriteSection(navController: NavController){
+fun FavoriteSection(navController: NavController, listState: LazyListState){
 
     val beverageItems = remember{
         mutableStateListOf(
@@ -238,6 +276,7 @@ fun FavoriteSection(navController: NavController){
     }
 
     LazyColumn (
+        state = listState,
         modifier = Modifier
             .fillMaxSize()
             .padding(start = 16.dp, end = 16.dp)

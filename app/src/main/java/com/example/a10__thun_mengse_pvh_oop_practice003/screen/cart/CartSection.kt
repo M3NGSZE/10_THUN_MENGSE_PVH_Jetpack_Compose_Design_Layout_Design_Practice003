@@ -3,6 +3,7 @@ package com.example.a10__thun_mengse_pvh_oop_practice003.screen.cart
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
@@ -16,7 +17,7 @@ import com.example.a10__thun_mengse_pvh_oop_practice003.component.SwipeToDeleteC
 import com.example.a10__thun_mengse_pvh_oop_practice003.data.ProductMoreFields
 
 @Composable
-fun MyCartSection(navController: NavController){
+fun MyCartSection(navController: NavController, listState: LazyListState){
 
     val cartItems= remember {
         mutableStateListOf(
@@ -80,6 +81,7 @@ fun MyCartSection(navController: NavController){
     }
 
     LazyColumn (
+        state = listState,
         modifier = Modifier
             .fillMaxSize()
             .padding(start = 16.dp, end = 16.dp)

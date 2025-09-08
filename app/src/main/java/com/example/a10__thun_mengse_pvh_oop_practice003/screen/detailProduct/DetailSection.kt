@@ -296,6 +296,6 @@ fun DetailProductSection(item: ProductMoreFields?, navController: NavController)
 
         Spacer(modifier = Modifier.height(23.dp))
 
-        NectarButton("Add to Basket", navController, "")
+
     }
 }

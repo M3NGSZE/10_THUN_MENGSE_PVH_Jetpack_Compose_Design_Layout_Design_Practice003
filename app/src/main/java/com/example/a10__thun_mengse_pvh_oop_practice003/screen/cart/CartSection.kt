@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -18,7 +19,7 @@ import com.example.a10__thun_mengse_pvh_oop_practice003.data.ProductMoreFields
 fun MyCartSection(navController: NavController){
 
     val cartItems= remember {
-        mutableListOf(
+        mutableStateListOf(
             ProductMoreFields(
                 id = 1,
                 name = "Bell Pepper Red",
@@ -86,7 +87,7 @@ fun MyCartSection(navController: NavController){
         items(cartItems, key = {item -> item.id}){
 //                it -> CartItem(it, navController, true)
             SwipeToDeleteContainer(it, onDelete = { cartItems -= it}) {
-                    it -> CartItem(it, navController, true)
+                    it -> CartItem(it, navController, true){cartItems -= it}
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.example.a10__thun_mengse_pvh_oop_practice003.component
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -58,7 +59,7 @@ fun CartItem(
     item: ProductMoreFields,
     navController: NavController,
     isAmountX: Boolean = false,
-    getTotalPrice: ((Double) -> Unit)? = null
+    delX: ((ProductMoreFields) -> Unit)? = null
 ){
 
     val height = if (!isAmountX) 160.dp else 160.dp
@@ -176,13 +177,20 @@ fun CartItem(
                 horizontalAlignment = Alignment.End
             ){
                 if (isAmountX){
-                    Icon(
-                        imageVector = Icons.Rounded.Close,
-                        contentDescription = "Close",
-                        tint = Color(0xFFB2B2B2),
-                        modifier = Modifier.size(30.dp)
-                            .clickable{}
-                    )
+                    IconButton(
+                        onClick = {
+                            delX?.invoke(item)
+                            Log.d("item","$item")
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Rounded.Close,
+                            contentDescription = "Close",
+                            tint = Color(0xFFB2B2B2),
+                            modifier = Modifier.size(30.dp)
+                        )
+                    }
+
                 }
 
                 val amountTop = if (!isAmountX) 40.dp else 0.dp

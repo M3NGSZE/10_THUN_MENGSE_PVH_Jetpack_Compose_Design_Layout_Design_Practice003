@@ -23,6 +23,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -40,9 +41,10 @@ import com.example.a10__thun_mengse_pvh_oop_practice003.R
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.CartItem
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarButton
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.NormalButton
+import com.example.a10__thun_mengse_pvh_oop_practice003.component.SwipeToDeleteContainer
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.TopbarGeneral
+import com.example.a10__thun_mengse_pvh_oop_practice003.data.ProductMoreFields
 import com.example.a10__thun_mengse_pvh_oop_practice003.navigation.Screen
-import com.example.a10__thun_mengse_pvh_oop_practice003.screen.exploreProduct.beverageItems
 
 @Composable
 fun FavoriteScreen(navController: NavController){
@@ -173,13 +175,78 @@ fun AlertImg(navController: NavController, onOff: (Boolean) -> Unit){
 
 @Composable
 fun FavoriteSection(navController: NavController){
+
+    val beverageItems = remember{
+        mutableStateListOf(
+            ProductMoreFields(
+                id = 1,
+                name = "Diet Coke",
+                des = "355ml, Price",
+                price = 1.99,
+                img = R.drawable.diet_coke
+            ),
+            ProductMoreFields(
+                id = 2,
+                name = "Sprite Can",
+                des = "325ml, Price",
+                price = 1.50,
+                img = R.drawable.sprike_can
+            ),
+            ProductMoreFields(
+                id = 3,
+                name = "Apple & Grape Juice",
+                des = "2L, Price",
+                price = 15.99,
+                img = R.drawable.apple_grape_juice
+            ),
+            ProductMoreFields(
+                id = 4,
+                name = "Orange Juice",
+                des = "325ml, Price",
+                price = 4.99,
+                img = R.drawable.orange_juice
+            ),
+            ProductMoreFields(
+                id = 5,
+                name = "Coca Cola Can",
+                des = "330ml, Price",
+                price = 4.99,
+                img = R.drawable.cocacola
+            ),
+            ProductMoreFields(
+                id = 6,
+                name = "Pepsi Can",
+                des = "355ml, Price",
+                price = 4.99,
+                img = R.drawable.pepesi
+            ),
+            ProductMoreFields(
+                id = 7,
+                name = "Diet Coke",
+                des = "355ml, Price",
+                price = 1.99,
+                img = R.drawable.diet_coke
+            ),
+            ProductMoreFields(
+                id = 8,
+                name = "Sprite Can",
+                des = "325ml, Price",
+                price = 1.50,
+                img = R.drawable.sprike_can
+            ),
+        )
+    }
+
     LazyColumn (
         modifier = Modifier
             .fillMaxSize()
             .padding(start = 16.dp, end = 16.dp)
     ){
         items(beverageItems, key = { item -> item.id}){
-                it -> CartItem(it, navController, false)
+//                it -> CartItem(it, navController, false)
+            SwipeToDeleteContainer(it, onDelete = { beverageItems -= it}) {
+                    it -> CartItem(it, navController, false){beverageItems -= it}
+            }
         }
     }
 }

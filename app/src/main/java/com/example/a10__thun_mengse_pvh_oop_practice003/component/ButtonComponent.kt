@@ -46,3 +46,29 @@ fun NectarButton(
         )
     }
 }
+
+@Composable
+fun NormalButton(
+    text: String,
+    off: Boolean,
+    useOff: (Boolean) -> Unit
+){
+    Button(
+        onClick = {
+            useOff(off)
+        },
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color(0xFF53B175),
+        ),
+        shape = RoundedCornerShape(20.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(60.dp)
+    ) {
+        Text(
+            text = text,
+            fontSize = 23.sp,
+            fontWeight = FontWeight.W900
+        )
+    }
+}

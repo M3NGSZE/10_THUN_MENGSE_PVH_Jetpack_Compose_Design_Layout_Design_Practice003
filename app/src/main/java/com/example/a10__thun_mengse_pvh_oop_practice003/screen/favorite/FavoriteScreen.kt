@@ -1,13 +1,8 @@
 package com.example.a10__thun_mengse_pvh_oop_practice003.screen.favorite
 
-import android.content.Context
-import android.view.Gravity
-import android.widget.Space
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -34,10 +29,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -46,6 +39,7 @@ import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.CartItem
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarButton
+import com.example.a10__thun_mengse_pvh_oop_practice003.component.NormalButton
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.TopbarGeneral
 import com.example.a10__thun_mengse_pvh_oop_practice003.navigation.Screen
 import com.example.a10__thun_mengse_pvh_oop_practice003.screen.exploreProduct.beverageItems
@@ -82,7 +76,7 @@ fun ConstraintButton(navController: NavController){
                 width = Dimension.fillToConstraints
             }
         ){
-            FailCheckout("Add All To Cart", navController)
+            NectarButton("Add All To Cart", navController, Screen.Cart.route)
         }
     }
 }
@@ -128,7 +122,7 @@ fun FailCheckout(text: String, navController: NavController){
                 }
             },
             text = {
-                AlertImg(navController)
+                AlertImg(navController){ showDialog = false}
             },
             confirmButton = {}
         )
@@ -137,7 +131,7 @@ fun FailCheckout(text: String, navController: NavController){
 
 }
 @Composable
-fun AlertImg(navController: NavController){
+fun AlertImg(navController: NavController, onOff: (Boolean) -> Unit){
     Column (
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center,
@@ -159,7 +153,8 @@ fun AlertImg(navController: NavController){
 
         Spacer(modifier = Modifier.height(30.dp))
 
-        NectarButton("Please Try Again", navController, Screen.Favorite.route)
+//        NectarButton("Please Try Again", navController, Screen.Favorite.route)
+        NormalButton("Please Try Again", false) { it-> onOff(it) }
 
         Spacer(modifier = Modifier.height(30.dp))
 

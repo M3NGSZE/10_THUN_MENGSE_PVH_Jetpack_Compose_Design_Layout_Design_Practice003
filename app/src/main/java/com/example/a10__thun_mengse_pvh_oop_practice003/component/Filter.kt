@@ -13,10 +13,12 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Cancel
+import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CheckboxDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -53,19 +55,22 @@ fun ShowSheet(isSheet: Boolean, getSheet : (Boolean) -> Unit){
             ) {
                 Row (
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .height(75.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
                 ){
-                    Icon(
-                        imageVector = Icons.Rounded.Cancel,
-                        contentDescription = "Close bottom sheet",
-                        modifier = Modifier
-                            .clickable{
-                                showSheet = false
-                                getSheet(showSheet)
-                            }
-                    )
+                    IconButton (
+                        onClick = {
+                            showSheet = false
+                            getSheet(showSheet)
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Rounded.Cancel,
+                            contentDescription = "Close bottom sheet",
+                        )
+                    }
+
 
                     Text(
                         text = "Filters",
@@ -73,16 +78,25 @@ fun ShowSheet(isSheet: Boolean, getSheet : (Boolean) -> Unit){
                         fontWeight = FontWeight.Bold
                     )
 
-                    Text(
-                        text = "         ",
+                    Icon(
+                        imageVector = Icons.Rounded.Cancel,
+                        contentDescription = "Close bottom sheet",
+                        tint = Color(0xFFF5F0F8)
                     )
                 }
+
+                Spacer(modifier = Modifier.height(55.dp))
 
                 FilterSection( "Categories", checkCategory)
 
                 Spacer(modifier = Modifier.height(15.dp))
 
                 FilterSection( "Brand", checkBrand)
+
+                Spacer(modifier = Modifier.height(95.dp))
+
+                NormalButton("Apply Filter" , false) { getSheet(it)}
+
             }
         }
     }

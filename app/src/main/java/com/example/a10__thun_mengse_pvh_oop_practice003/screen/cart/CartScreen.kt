@@ -15,6 +15,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Cancel
 import androidx.compose.material.icons.rounded.KeyboardArrowRight
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -43,15 +44,36 @@ import androidx.constraintlayout.compose.Dimension
 import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.R
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.NectarButton
+import com.example.a10__thun_mengse_pvh_oop_practice003.component.NormalButton
 import com.example.a10__thun_mengse_pvh_oop_practice003.component.TopbarGeneral
 import com.example.a10__thun_mengse_pvh_oop_practice003.navigation.Screen
+import com.example.a10__thun_mengse_pvh_oop_practice003.screen.favorite.AlertImg
+import kotlin.random.Random
 
 @Composable
 fun CartScreen(navController: NavController){
 
     var isShow by remember { mutableStateOf(false) }
 
+
     Column {
+//        var olo: Boolean? by remember { mutableStateOf(null) }
+//
+//        if (olo == true){
+//            Text("olo 1")
+//            olo = null
+//        }else if (olo == false){
+//            Text("olo 2")
+//            olo = null
+//        }
+//
+//        Button(
+//            onClick = {
+//                olo = Random.nextBoolean()
+//            }
+//        ) {
+//            Text("click here")
+//        }
 
         TopbarGeneral("My Cart")
 //        MyCartSection(navController)
@@ -184,15 +206,18 @@ fun ShowCheckout(isSheet: Boolean, navController: NavController, getSheet : (Boo
                         fontWeight = FontWeight.Bold
                     )
 
-                    Icon(
-                        imageVector = Icons.Rounded.Cancel,
-                        contentDescription = "Close bottom sheet",
-                        modifier = Modifier
-                            .clickable{
-                                showSheet = false
-                                getSheet(showSheet)
-                            }
-                    )
+                    IconButton(
+                        onClick = {
+                            showSheet = false
+                            getSheet(showSheet)
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Rounded.Cancel,
+                            contentDescription = "Close bottom sheet",
+                        )
+                    }
+
                 }
 
                 CheckoutRow("Delivery", "Select Method")
@@ -203,7 +228,7 @@ fun ShowCheckout(isSheet: Boolean, navController: NavController, getSheet : (Boo
 
                 CheckoutRow("Total Cost", "$13.97")
 
-                OrderButton(navController)
+                OrderButton(navController){ showSheet = it}
 
             }
         }
@@ -211,7 +236,10 @@ fun ShowCheckout(isSheet: Boolean, navController: NavController, getSheet : (Boo
 }
 
 @Composable
-fun OrderButton(navController: NavController){
+fun OrderButton(navController: NavController, offSheet: (Boolean) -> Unit){
+
+    offSheet(false)
+
     Column (
         modifier = Modifier
             .fillMaxWidth()
@@ -262,7 +290,38 @@ fun OrderButton(navController: NavController){
 
         Spacer(modifier = Modifier.height(23.dp))
 
-        NectarButton("Place Order", navController, Screen.Accept.route)
+        var showDialog: Boolean? by remember { mutableStateOf(null) }
+
+        val randomBool = Random.nextBoolean()
+
+        NormalButton("Place Order", randomBool) { showDialog = it}
+
+        if (showDialog == false) {
+            AlertDialog(
+                onDismissRequest = { showDialog = false }, // closes when tapped outside
+                containerColor = Color.White,
+                title = {
+                    IconButton(
+                        onClick = {
+                            showDialog = null
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Rounded.Cancel,
+                            contentDescription = "Cancel"
+                        )
+                    }
+                },
+                text = {
+                    AlertImg(navController){ showDialog = null}
+                },
+                confirmButton = {}
+            )
+        }
+        if (showDialog == true){
+            navController.navigate(Screen.Accept.route)
+            showDialog = null
+        }
     }
 }
 

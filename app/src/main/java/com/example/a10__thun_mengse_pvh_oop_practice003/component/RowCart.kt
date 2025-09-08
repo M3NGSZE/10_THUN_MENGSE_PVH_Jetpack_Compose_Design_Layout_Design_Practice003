@@ -19,12 +19,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material.icons.rounded.Close
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -38,6 +40,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.a10__thun_mengse_pvh_oop_practice003.data.ProductMoreFields
+
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.delay
 
 @Composable
 fun CartItem(
@@ -184,6 +198,80 @@ fun CartItem(
         }
 
     }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun <T> SwipeToDeleteContainer(
+    item: T,
+    onDelete: (T) -> Unit,
+    animationDuration: Int = 500,
+    content: @Composable (T) -> Unit
+) {
+    var isRemoved by remember { mutableStateOf(false) }
+
+    val state = rememberSwipeToDismissBoxState (
+        confirmValueChange = { value ->
+            if (value == SwipeToDismissBoxValue.EndToStart || value == SwipeToDismissBoxValue.StartToEnd) {
+                isRemoved = true
+                true
+            } else {
+                false
+            }
+        }
+    )
+
+    LaunchedEffect(isRemoved) {
+        if (isRemoved) {
+            delay(animationDuration.toLong())
+            onDelete(item)
+        }
+    }
+
+    AnimatedVisibility(
+        visible = !isRemoved,
+        exit = shrinkVertically(
+            animationSpec = tween(durationMillis = animationDuration),
+            shrinkTowards = Alignment.Top
+        ) + fadeOut()
+    ) {
+        SwipeToDismissBox(
+            state = state,
+            backgroundContent = {
+                DeleteBackground(state)
+            },
+            content = {
+                content(item)
+            }
+        )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun DeleteBackground(state: SwipeToDismissBoxState) {
+    val color = if (state.targetValue != SwipeToDismissBoxValue.Settled) {
+        Color.Red
+    } else {
+        Color.Transparent
+    }
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color)
+            .padding(16.dp),
+        contentAlignment = Alignment.CenterEnd
+    ) {
+        if (color == Color.Red) {
+            Icon(
+                imageVector = Icons.Default.Delete,
+                contentDescription = "Delete",
+                tint = Color.White
+            )
+        }
+    }
+}
 
 //    Card (
 //        modifier = Modifier
@@ -263,4 +351,3 @@ fun CartItem(
 //            }
 //        }
 //    }
-}
